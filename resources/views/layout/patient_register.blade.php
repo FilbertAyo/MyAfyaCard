@@ -7,19 +7,19 @@
     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">All</a>
+            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">All Registered Patient</a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#audiences" role="tab" aria-selected="false">Progress</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#demographics" role="tab" aria-selected="false">Progress</a>
-          </li>
+          </li> --}}
 
         </ul>
         <div>
           <div class="btn-wrapper">
-            <btton class="btn btn-primary text-white" type="button" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-account"></i> Register</btton>
+            <btton class="btn btn-primary text-white" type="button" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-account-plus"></i> Register</btton>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
     <div class="col-lg-12 grid-margin stretch-card mt-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title"><code class="h3">HIV Registered Patients</code></h4>
+                <h4 class="card-title"><code class="h3">HIV </code>Registered Patients</h4>
                 {{-- <p class="card-description">
                     Add class <code></code>
                 </p> --}}
@@ -102,7 +102,7 @@
                                 </td>
 
                                 <td>
-                                    {{-- <a href="" class="btn btn-danger mdi mdi-delete text-white"></a> --}}
+                                    <a href="{{ route('patient_register.show',$pat_reg->id) }}" class="btn btn-info mdi mdi-eye text-white"></a>
 
                                     <form action="{{ route('patient_register.destroy',$pat_reg->id) }}" method="POST" class="" type= "button"  onsubmit="return confirm('Delete')">
                                         @csrf
@@ -146,7 +146,7 @@
               <h4 class="modal-title" id="exampleModalLabel"><code class="h3">HIV Patient Register</code></h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <div aria-hidden="true" class="icon icon-box-danger ">
-                  <span class="mdi mdi-close icon-item"></span>
+                  <span class="mdi mdi-close text-danger icon-item"></span>
               </div>
               </button>
             </div>
@@ -248,21 +248,25 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Country</label>
+                                <label class="col-sm-3 col-form-label">Nationality</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="country">
-          <option>Tanzania</option>
-          <option>Kenya</option>
-          <option>Uganda</option>
-          <option>Rwanda</option>
-          <option>Burundi</option>
-          <option>South Sudan</option>
+          <option>Tanzanian</option>
+          <option>Kenyan</option>
+          <option>Ugandan</option>
+          <option>Rwandan</option>
+          <option>Burundian</option>
+          <option>Sudanese</option>
                                  </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2 flex">Register</button>
+
+                    <div class="flex justify-end">
+                    <button type="submit" class="btn btn-danger">Register</button>
+                </div>
+
                 </form>
 
             </div>

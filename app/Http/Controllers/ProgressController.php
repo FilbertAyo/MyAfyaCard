@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\PatientRegister;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PatientRegisterController extends Controller
+class ProgressController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $patient_register = PatientRegister::all();
+   $patient = DB::table('patient_registers')->get();
 
-        return view('layout.patient_register',compact('patient_register'));
+   return view('dashboard',[
+    'patient' => $patient,
+   ]);
+
     }
 
     /**
@@ -25,7 +26,7 @@ class PatientRegisterController extends Controller
      */
     public function create()
     {
-        return view('layout.patient_register');
+        //
     }
 
     /**
@@ -33,12 +34,7 @@ class PatientRegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $requestData= $request->all();
-
-        PatientRegister::create($requestData);
-
-        return redirect()->back()->with('success',"Registration done successfully");
-
+        //
     }
 
     /**
@@ -46,17 +42,10 @@ class PatientRegisterController extends Controller
      */
     public function show(string $id)
     {
-        $user = DB::table('users')->get();
-        $currentTime = Carbon::now();
+        $patient= PatientRegister::findOrFail($id);
 
+        return view('layout.progress',compact('patient'));
 
-        $patient_register = PatientRegister::findOrFail($id);
-
-        return view('layout.patient_details',[
-            'user' => $user,
-            'currentTime'=> $currentTime,
-
-        ],compact('patient_register','user','currentTime'));
     }
 
     /**
@@ -80,11 +69,6 @@ class PatientRegisterController extends Controller
      */
     public function destroy(string $id)
     {
-        $patient_register= PatientRegister::findOrFail($id);
-
-        $patient_register->delete();
-
-        return redirect()->route('patient_register.index')->with('success',"Patient deleted successfully");
-
+        //
     }
 }

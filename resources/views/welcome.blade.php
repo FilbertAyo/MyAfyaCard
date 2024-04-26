@@ -38,7 +38,7 @@
                 <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
 
                   <div class="me-3">
-                    <a class="navbar-brand brand-logo" href="index.html">
+                    <a class="navbar-brand brand-logo text-danger" href="index.html">
                       My Afya Card
                     </a>
                     <a class="navbar-brand brand-logo-mini" href="index.html">

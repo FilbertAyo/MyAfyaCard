@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PatientRegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgressController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::post('/logout','Auth\LoginController@logout')->name('logout');
+// Route::post('/logout','Auth\LoginController@logout')->name('logout');
 
 Route::resource('patient_register',PatientRegisterController::class);
+Route::resource('dashboard',ProgressController::class);
+
+Route::get('/test',function(){
+    return view('layout.test');
+});
