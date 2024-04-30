@@ -24,8 +24,9 @@ require __DIR__.'/auth.php';
 // Route::post('/logout','Auth\LoginController@logout')->name('logout');
 
 Route::resource('patient_register',PatientRegisterController::class);
-Route::resource('dashboard',ProgressController::class);
 
-Route::get('/test',function(){
-    return view('layout.test');
-});
+Route::resource('dashboard',ProgressController::class);
+Route::get('progress/{id}', [ProgressController::class, 'show'])->name('progress.show');
+
+
+

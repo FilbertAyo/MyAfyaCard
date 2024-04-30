@@ -20,9 +20,58 @@
         <div class="btn-wrapper">
             <btton class="btn btn-primary text-white" type="button" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-plus"></i> metrics</btton>
           </div>
-        
-        
+    
       </div>
+
+
+      @if(Session::has('success'))
+      <div class="alert alert-success" role="alert">
+      {{ Session::get('success') }}
+      </div>
+        @endif
+
+      <div class="col-lg-12 grid-margin stretch-card mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Patient metrics</h4>
+                <p class="card-description">
+                    Progress <code>table</code>
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>CD4</th>
+                                <th>Viral load</th>
+                                <th>Ratio</th>
+                                <th>Weight</th>
+                                <th>Medicine</th>
+                                <th>Dosage</th>
+                                <th>Other medicine</th>
+                                <th>Next Visit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($metrics as $metric)
+
+                            <tr>
+                                <td>{{ $metric->cd }}</td>
+                                <td>Photoshop</td>
+                                <td>Photoshop</td>
+                                <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>                              
+                                <td>Jacob</td>
+                                <td>Photoshop</td>
+                                <td>Jacob</td>
+                                <td><label class="badge badge-danger">Pending</label></td>
+                            </tr>
+
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div class="row mt-3">
     <div class="col-lg-6 grid-margin stretch-card">
@@ -86,7 +135,7 @@
         </div>
         <div class="modal-body">
 
-            <form class="form-sample" method="POST" action="" enctype="multipart/form-data">
+            <form class="form-sample" method="POST" action="{{ route('dashboard.store') }}" enctype="multipart/form-data">
                 {!!  csrf_field() !!}
                 <p class="card-description">
                     Patient info per visit
@@ -122,7 +171,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Weight</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" name="weight" placeholder="kg"/>
+                                <input type="text" class="form-control" name="weight" placeholder="kg"/>
                             </div>
                         </div>
                     </div>

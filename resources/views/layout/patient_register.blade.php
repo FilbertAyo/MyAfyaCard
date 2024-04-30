@@ -33,12 +33,12 @@
     <div class="col-lg-12 grid-margin stretch-card mt-3">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title"><code class="h3">HIV </code>Registered Patients</h4>
-                {{-- <p class="card-description">
-                    Add class <code></code>
-                </p> --}}
+                <div class="d-sm-flex justify-content-between">
+                    <h3 class="card-title">HIV Registered Patients</h3>
+                    <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search any data " style="width: 30%;">
+                </div>
                 <div class="table-responsive pt-3">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="myTable">
                         <thead>
                             <tr>
                                 <th>
@@ -294,5 +294,14 @@
         }
     </style>
 
-
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 </x-app-layout>

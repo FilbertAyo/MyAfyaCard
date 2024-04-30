@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use App\Models\PatientRegister;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +35,21 @@ class ProgressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+     
+        $metrics = Patient::create([
+          'cd'=> $request->cd,
+          'weight'=>$request->weight,
+          'viral_load'=> $request->viral_load, 
+          'ratio'=>$request->ratio,
+          'medicine'=>$request->medicine,
+          'dosage'=>$request->dosage,
+          'other_med'=>$request->other_med,
+          'visit_date'=>$request->visit_date,
+        ]);
+
+        return redirect()->route('dashboard.show',$metrics->id)->with('success',"Metrics added successfully");
+    
     }
 
     /**
@@ -42,9 +57,11 @@ class ProgressController extends Controller
      */
     public function show(string $id)
     {
-        $patient= PatientRegister::findOrFail($id);
 
-        return view('layout.progress',compact('patient'));
+        $patient= PatientRegister::findOrFail($id);
+        $metrics = Patient::all();
+
+        return view('layout.progress',compact('patient','metrics'));
 
     }
 
