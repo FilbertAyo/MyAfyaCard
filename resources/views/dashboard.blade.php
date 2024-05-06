@@ -5,23 +5,47 @@
     <div class="col-sm-12">
         <div class="home-tab">
 
+            <div class="d-sm-flex align-items-center justify-start mb-2 mt-3">
+                <h4 class="text-danger">HIV patient progress</h4>
+            </div>
+
     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">All</a>
+            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="overview" aria-selected="true">All</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#audiences" role="tab" aria-selected="false">Progress <i class="mdi mdi-arrow-top-right text-success"></i></a>
+            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#" role="tab" aria-selected="false">Progress <i class="mdi mdi-arrow-top-right text-success"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#demographics" role="tab" aria-selected="false">Progress <i class="mdi mdi-arrow-bottom-left text-danger"></i></a>
+            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#" role="tab" aria-selected="false">Progress <i class="mdi mdi-arrow-bottom-left text-danger"></i></a>
           </li>
 
         </ul>
        
-          <div class="btn-wrapper">
-            <h4 class="text-danger">Patient progress report</h4>
-          </div>
+          
+
+          <ul class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle toggle-dark btn-lg mb-0 me-0 text-primary" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Overview </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <h6 class="dropdown-header text-primary">Patients data</h6>
+                <a class="dropdown-item" href="#">Total patients : 164 </a>
+                <a class="dropdown-item" href="#">Good progress: 85</a>
+                <a class="dropdown-item" href="#">Poor progress: 79</a>
+                <h6 class="dropdown-header text-primary">Percentage progress</h6>
+                <a class="dropdown-item" href="#">  <div>
+                    <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
+                        <p class="text-success">79%</p>
+                        <p>85/162</p>
+                    </div>
+                    <div class="progress progress-md">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </a>
+                
+            </div>
+        </ul>
         
       </div>
 

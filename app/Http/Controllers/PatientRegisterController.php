@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PatientRegister;
+use App\Models\Patient;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class PatientRegisterController extends Controller
      */
     public function index()
     {
-        $patient_register = PatientRegister::all();
+        $patient_register = Patient::all();
 
         return view('layout.patient_register',compact('patient_register'));
     }
@@ -35,7 +35,7 @@ class PatientRegisterController extends Controller
     {
         $requestData= $request->all();
 
-        PatientRegister::create($requestData);
+        Patient::create($requestData);
 
         return redirect()->back()->with('success',"Registration done successfully");
 
@@ -50,7 +50,7 @@ class PatientRegisterController extends Controller
         $currentTime = Carbon::now();
 
 
-        $patient_register = PatientRegister::findOrFail($id);
+        $patient_register = Patient::findOrFail($id);
 
         return view('layout.patient_details',[
             'user' => $user,
@@ -80,7 +80,7 @@ class PatientRegisterController extends Controller
      */
     public function destroy(string $id)
     {
-        $patient_register= PatientRegister::findOrFail($id);
+        $patient_register= Patient::findOrFail($id);
 
         $patient_register->delete();
 

@@ -34,11 +34,11 @@
     <body>
         <div class="container-scroller">
 
-            <nav class="navbar default-layout col-lg-12 col-12 p-0  d-flex align-items-top flex-row">
+            <nav class="navbar col-lg-12 col-12 p-0  d-flex align-items-top flex-row">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
 
                   <div class="me-3">
-                    <a class="navbar-brand brand-logo text-danger" href="index.html">
+                    <a class="navbar-brand brand-logo text-danger" href="{{ url('/') }}">
                       My Afya Card
                     </a>
                     <a class="navbar-brand brand-logo-mini" href="index.html">
@@ -111,9 +111,7 @@
                     </li>
 
                   </ul>
-                  <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
-                    <span class="mdi mdi-menu"></span>
-                  </button>
+                 
                 </div>
               </nav>
 
@@ -121,7 +119,11 @@
               <div class="container flex" >
 
 
-                <div class="left-content col-lg-6" style="margin-top: 10%;">
+                <div class="row mt-3">
+                  <div class="col-lg-6 grid-margin stretch-card">
+
+
+                   <div class="mt-5">
                     <h1>Easy track of an HIV patient</h1>
                     <ul  class="list-ticked">
                         <li>Lorem ipsum dolor sit amet</li>
@@ -129,38 +131,43 @@
                         <li>Lorem ipsum dolor sit amet</li>
                     </ul>
 
-
                     <div class="mt-4 text-gray-300 btn-s">
 
-                        @if (Route::has('login'))
+                      @if (Route::has('login'))
 
-                        @auth
-                            <a
-                                href="{{ url('/dashboard') }}"
-                                class="btn btn-danger"
-                            >
-                                Log in
-                            </a>
-                        @else
-                            <a
-                                href="{{ route('login') }}"
-                                class="btn btn-danger"
-                            >
-                                Log in
-                            </a>
+                      @auth
+                          <a
+                              href="{{ url('/dashboard') }}"
+                              class="btn btn-danger"
+                          >
+                              Log in
+                          </a>
+                      @else
+                          <a
+                              href="{{ route('login') }}"
+                              class="btn btn-danger"
+                          >
+                              Log in
+                          </a>
 
 
-                        @endauth
+                      @endauth
 
-                @endif
+              @endif
 
-                    </div>
+                  </div>
+                </div>
                 </div>
 
+                  <div class="col-lg-6 grid-margin stretch-card">
+                    <img src="/images/ye.png" alt="">
+                  </div> 
+                 
+              </div>
 
-                          <div class="right-content" col-lg-6>
-                            <img src="/images/ye.png" alt="">
-                        </div>
+
+
+                         
 
                     </div>
 

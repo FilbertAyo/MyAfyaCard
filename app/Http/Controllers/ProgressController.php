@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Metric;
 use App\Models\Patient;
-use App\Models\PatientRegister;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Laravel\Prompts\Progress;
 
 class ProgressController extends Controller
 {
@@ -14,11 +16,12 @@ class ProgressController extends Controller
      */
     public function index()
     {
-   $patient = DB::table('patient_registers')->get();
+//    $patient = DB::table('patient_registers')->get();
 
-   return view('dashboard',[
-    'patient' => $patient,
-   ]);
+   $metrics = Metric::with('patients')->get();
+   $patient = Patient::with('metrics')->get();
+
+   return view('dashboard',compact('patient','metrics'));
 
     }
 
@@ -35,9 +38,7 @@ class ProgressController extends Controller
      */
     public function store(Request $request)
     {
-
-     
-        $metrics = Patient::create([
+      Metric::create([
           'cd'=> $request->cd,
           'weight'=>$request->weight,
           'viral_load'=> $request->viral_load, 
@@ -46,10 +47,10 @@ class ProgressController extends Controller
           'dosage'=>$request->dosage,
           'other_med'=>$request->other_med,
           'visit_date'=>$request->visit_date,
+          'patient_id'=>$request->patient_id,
         ]);
 
-        return redirect()->route('dashboard.show',$metrics->id)->with('success',"Metrics added successfully");
-    
+        return redirect()->back()->with('success',"Metrics added successfully");
     }
 
     /**
@@ -58,10 +59,42 @@ class ProgressController extends Controller
     public function show(string $id)
     {
 
-        $patient= PatientRegister::findOrFail($id);
-        $metrics = Patient::all();
+        $patient= Patient::findOrFail($id); 
+        $metrics = Metric::where('patient_id',$id)->get();
 
-        return view('layout.progress',compact('patient','metrics'));
+        $cdData = Metric::where('patient_id',$id)
+        ->select('created_at','cd')->get();
+   
+   
+            $data = Metric::where('patient_id',$id)
+            ->select('created_at','weight')->get();
+
+
+            $ratio = Metric::where('patient_id',$id)
+            ->select('created_at','ratio')->get();
+       
+            $formData = $cdData->map(function($item){
+                return [
+                    'x'=>Carbon::parse($item->created_at)->format('M/d'),
+                    'y'=>$item->cd
+                ];
+                });
+
+            $formattedData = $data->map(function($item){
+                return [
+                    'x'=>Carbon::parse($item->created_at)->format('M/d'),
+                    'y'=>$item->weight
+                ];
+                });
+
+                $ratioData = $ratio->map(function($item){
+                    return [
+                        'x'=>Carbon::parse($item->created_at)->format('M/d'),
+                        'y'=>$item->ratio
+                    ];
+                    });
+       
+        return view('layout.progress',['cdData'=> $formData ,'data'=> $formattedData, 'ratio'=>$ratioData],compact('patient','metrics'));
 
     }
 

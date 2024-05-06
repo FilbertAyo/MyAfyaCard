@@ -62,33 +62,25 @@
     </head>
     <body>
         <div class="container-scroller">
-            @include('layouts.navigation')
+           
 
             <div class="container-fluid page-body-wrapper">
-            @include('layouts.sidebar')
+         
 
-            <div class="main-panel">
+            
                 <div class="content-wrapper">
 
-
-                    {{-- //dark and bg-white --}}
-
-                    <div class="theme-setting-wrapper">
-                        <div id="settings-trigger"><i class="ti-settings"></i></div>
-                        <div id="theme-settings" class="settings-panel">
-                          <i class="settings-close ti-close"></i>
-                          <p class="settings-heading">SIDEBAR SKINS</p>
-                          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Light</div>
-                          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Dark</div>
-
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Line chart</h4>
+                                <canvas id="lineChart"></canvas>
+                            </div>
                         </div>
-                      </div>
-
-
-                {{ $slot }}
+                    </div>
 
                 </div>
-            </div>
+          
 
             </div>
         </div>
@@ -118,22 +110,64 @@
   <!-- Custom js for this page-->
   <script src="{{ asset('js/dashboard.js') }}"></script>
   <script src="{{ asset('js/Chart.roundedBarCharts.js') }}"></script>
-  <!-- this below for the charts-->
-{{-- 
-  <script src="{{ asset('chart/line_chart.js') }}"></script>
+  <!-- End custom js for this page-->
+
+  {{-- <script src="{{ asset('chart/line_chart.js') }}"></script>
   <script src="{{ asset('chart/pie.js') }}"></script>
-  <script src="{{ asset('chart/area.js') }}"></script> --}}
+<script src="{{ asset('chart/area.js') }}"></script> --}}
 
-  <script>
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
+<script>
+
+
+var weightData = JSON.parse('{!! json_encode($data) !!}');
+var dates = weightData.map(data=>data.x);
+
+    var data = {
+    labels: dates,
+    datasets: [{
+        label: 'weight',
+        data: weightData,
+        borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1,
+        fill: false
+    }]
+};
+
+var options = {
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    },
+    legend: {
+        display: false
+    },
+    elements: {
+        point: {
+            radius: 0
+        }
+    }
+
+};
+
+
+if ($("#lineChart").length) {
+    var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+    var lineChart = new Chart(lineChartCanvas, {
+        type: 'line',
+        data: data,
+        options: options
     });
+}
 </script>
-
     </body>
 </html>

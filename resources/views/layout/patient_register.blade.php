@@ -4,6 +4,11 @@
     <div class="col-sm-12">
         <div class="home-tab">
 
+            <div class="d-sm-flex align-items-center justify-start mb-2 mt-3">
+                <h4 class="text-danger">HIV Registered patient</h4>
+            </div>
+
+
     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item">
@@ -294,14 +299,5 @@
         }
     </style>
 
-<script>
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
+
 </x-app-layout>

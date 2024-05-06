@@ -18,7 +18,7 @@
                 </ul>
                 
                   <div class="btn-wrapper">
-                    <a href="{{ route('patient_register.index') }}" class="btn btn-primary text-white"><i class="mdi mdi-keyboard-return"></i> Back</a>
+                    <a href="{{ route('patient_register.index') }}" class="btn btn-primary text-white"><i class="mdi mdi-arrow-left"></i> Back</a>
                   </div>
                 
               </div>

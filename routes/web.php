@@ -3,6 +3,7 @@
 use App\Http\Controllers\PatientRegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\TestingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,5 +29,4 @@ Route::resource('patient_register',PatientRegisterController::class);
 Route::resource('dashboard',ProgressController::class);
 Route::get('progress/{id}', [ProgressController::class, 'show'])->name('progress.show');
 
-
-
+Route::get('/test',[TestingController::class, 'index']);
