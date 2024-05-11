@@ -48,6 +48,8 @@ class ProgressController extends Controller
           'other_med'=>$request->other_med,
           'visit_date'=>$request->visit_date,
           'patient_id'=>$request->patient_id,
+          'enrolment' =>$request->enrolment,
+          'prognosis' => null,
         ]);
 
         return redirect()->back()->with('success',"Metrics added successfully");

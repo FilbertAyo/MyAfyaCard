@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('medicine');
             $table->string('dosage');
             $table->string('other_med');
+            $table->string('enrolment');
+            $table->string('prognosis')->nullable();
             $table->string('visit_date');
             $table->timestamps();
         });

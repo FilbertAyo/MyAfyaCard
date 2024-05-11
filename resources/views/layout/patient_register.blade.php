@@ -106,7 +106,7 @@
                                     {{ $pat_reg->street }}, {{ $pat_reg->district }}, {{ $pat_reg->city }}
                                 </td>
 
-                                <td>
+                                <td class="flex">
                                     <a href="{{ route('patient_register.show',$pat_reg->id) }}" class="btn btn-info mdi mdi-eye text-white"></a>
 
                                     <form action="{{ route('patient_register.destroy',$pat_reg->id) }}" method="POST" class="" type= "button"  onsubmit="return confirm('Delete')">
@@ -234,11 +234,11 @@
                                 <div class="col-sm-9 flex gap-5">
                                    
                                         <label>
-                                            <input type="radio" class="mr-2 text-danger" name="family_exposure" value="yes">
+                                            <input type="radio" class="mr-2 text-danger" name="family_exposure" value="Yes">
                                             Yes
                                         </label>
                                         <label>
-                                            <input type="radio" class="mr-2 text-danger" name="family_exposure" value="no">
+                                            <input type="radio" class="mr-2 text-danger" name="family_exposure" value="No">
                                             No
                                         </label>
                                 </div>

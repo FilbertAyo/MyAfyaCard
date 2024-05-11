@@ -48,7 +48,9 @@
                                 <th>Weight</th>
                                 <th>Medicine</th>
                                 <th>Dosage</th>
+                                <th>Current status</th>
                                 <th>Other medicine</th>
+                                <th>prognosis</th>
                                 <th>Next Visit</th>
                             </tr>
                         </thead>
@@ -64,8 +66,10 @@
                                 <td> {{ $metric->weight }}</td>                              
                                 <td>{{ $metric->medicine }}</td>
                                 <td>{{ $metric->dosage }}</td>
+                                <td>{{ $metric->enrolment }}</td>
                                 <td>{{ $metric->other_med }}</td>
-                                <td><label class="badge badge-danger">{{ $metric->visit_date }}<i class="ti-arrow-down"></i></label></td>
+                                <td></td>
+                                <td><label class="badge badge-primary">{{ $metric->visit_date }}<i class="ti-arrow-down text-primary"></i></label></td>
                             </tr>
 
                             @endforeach
@@ -111,27 +115,7 @@
     </div> 
    
 </div>
-{{-- <div class="row">
-   
 
-     {{-- <div class="col-lg-6 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Area chart</h4>
-                <canvas id="areaChart"></canvas>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Pie chart</h4>
-                <canvas id="pieChart"></canvas>
-            </div>
-        </div>
-    </div>
-</div>  --}}
 
         </div>
     </div>
@@ -214,12 +198,38 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Dossage</label>
+                            <label class="col-sm-3 col-form-label">Dosage</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="dosage"/>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">status enrolment</label>
+                            
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="enrolment">
+          <option>Pregnant</option>
+          <option>sick with no TB illness</option>
+          <option>TB treatment</option>
+        
+                                 </select>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">prognosis</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" name="visit_date" />
+                            </div>
+                        </div>
+                    </div> --}}
                 </div>
 
                 <div class="row">
