@@ -39,12 +39,17 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'userType' => $request->userType,
+            'location' => $request->location,
         ]);
-
+        
+        
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard.index', absolute: false));
+        return redirect()->back()->with('success','Hospital registered successfully');
     }
+
+    
 }

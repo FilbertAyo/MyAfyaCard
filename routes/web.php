@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PatientRegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgressController;
@@ -10,9 +12,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ProfileController::class, 'redirect'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -26,7 +26,9 @@ require __DIR__.'/auth.php';
 
 Route::resource('patient_register',PatientRegisterController::class);
 
-Route::resource('dashboard',ProgressController::class);
+Route::resource('pat_progress',ProgressController::class);
 Route::get('progress/{id}', [ProgressController::class, 'show'])->name('progress.show');
+Route::resource('admin',AdminController::class);
+// Route::get('/test',[TestingController::class, 'index']);
 
-Route::get('/test',[TestingController::class, 'index']);
+Route::resource('reg',RegisteredUserController::class);

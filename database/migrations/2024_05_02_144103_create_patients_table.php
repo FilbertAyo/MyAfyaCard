@@ -23,6 +23,17 @@ return new class extends Migration
             $table->string('district');
             $table->string('city');
             $table->string('country');
+            $table->string('allergy');
+            $table->string('family_exposure');
+            $table->string('confirmed');
+            $table->string('co_year');
+            $table->string('partner');
+            $table->string('supporter');
+            $table->string('relation');
+            $table->string('sup_address');
+            $table->string('sup_contact');
+            $table->string('local_leader');
+            $table->string('local_contact');
             $table->timestamps();
         });
     }

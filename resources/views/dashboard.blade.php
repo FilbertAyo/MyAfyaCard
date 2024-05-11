@@ -5,7 +5,7 @@
     <div class="col-sm-12">
         <div class="home-tab">
 
-            <div class="d-sm-flex align-items-center justify-start mb-2 mt-3">
+            <div class="d-sm-flex align-items-center justify-start mb-2">
                 <h4 class="text-danger">HIV patient progress</h4>
             </div>
 
@@ -92,7 +92,7 @@
                                    {{$patient->first_name}} {{ $patient->last_name }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('dashboard.show' , $patient->id) }}" class="btn btn-info text-white">progres</a>
+                                    <a href="{{ route('pat_progress.show' , $patient->id) }}" class="btn btn-info text-white">progres</a>
                                 </td>
                             </tr>
 

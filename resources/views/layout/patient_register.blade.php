@@ -4,7 +4,7 @@
     <div class="col-sm-12">
         <div class="home-tab">
 
-            <div class="d-sm-flex align-items-center justify-start mb-2 mt-3">
+            <div class="d-sm-flex align-items-center justify-start mb-2 ">
                 <h4 class="text-danger">HIV Registered patient</h4>
             </div>
 
@@ -219,6 +219,59 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Drug Allergies (if any)</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="" name="allergy"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Family HIV exposure?</label>
+                                <div class="col-sm-9 flex gap-5">
+                                   
+                                        <label>
+                                            <input type="radio" class="mr-2 text-danger" name="family_exposure" value="yes">
+                                            Yes
+                                        </label>
+                                        <label>
+                                            <input type="radio" class="mr-2 text-danger" name="family_exposure" value="no">
+                                            No
+                                        </label>
+                                </div>
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">confirmed HIV at </label>
+                                <div class="col-sm-9 flex gap-2">
+                                    <input type="text" class="form-control" placeholder="eg, Amana hospital" name="confirmed" />
+                                    <input type="number" class="form-control" min="1900" id="year" name="co_year" step="1" placeholder="YYYY">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Do you have partner?</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="partner">
+          <option>No</option>                              
+          <option>Yes (-ve HIV)</option>
+          <option>Yes (+ve HIV) </option>
+         
+          
+                                 </select>
+                                </div>
+                            </div>
+                        </div>
+                      
+                    </div>
 
                     <p class="card-description">
                         Address
@@ -263,6 +316,78 @@
           <option>Burundian</option>
           <option>Sudanese</option>
                                  </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="card-description">
+                        Patient support
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Supporter name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="supporter" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Supporter relation</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="relation">
+          <option>Mother</option>
+          <option>Father</option>
+          <option>Sister</option>
+          <option>Brother</option>
+          <option>Uncle</option>
+          <option>Aunt</option>
+          <option>Husband</option>
+          <option>Wife</option>
+          <option>Partner</option>
+          <option>Other</option>
+                                 </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Address</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="sup_address" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Contact</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="sup_contact" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Local leader</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="local_leader" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Local leader Contact</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="local_contact" />
                                 </div>
                             </div>
                         </div>

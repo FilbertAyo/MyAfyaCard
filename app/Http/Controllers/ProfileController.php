@@ -14,6 +14,18 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+
+     public function redirect()
+     {
+     //   
+        $userType = Auth::user()->userType;
+        if($userType=='1'){
+         return redirect()->route('admin.index');
+        }elseif($userType=='0'){
+         return redirect()->route('pat_progress.index');
+        }
+     }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [

@@ -22,7 +22,18 @@ class Patient extends Model
         'street',
         'district',
         'city',
-        'country'
+        'country',
+        'allergy',
+        'family_exposure',
+        'confirmed',
+        'co_year',
+        'partner',
+        'supporter',
+        'relation',
+        'sup_address',
+        'sup_contact',
+        'local_leader',
+        'local_contact',
     ];
 
 

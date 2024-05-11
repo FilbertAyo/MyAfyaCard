@@ -6,29 +6,50 @@
 
         <title>MyAfyaCard</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+           {{-- added  --}}
+           <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/dashboard/">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="css/style.css">
+           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+             integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+           <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+             crossorigin="anonymous"></script>
+           <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+             integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+             crossorigin="anonymous"></script>
+
+
+ <!-- Scripts -->
+ @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+ <!-- Fonts -->
+ <link rel="preconnect" href="https://fonts.bunny.net">
+ <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+
+ <!-- Styles -->
+ <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 
 <!-- plugins:css -->
-<link rel="stylesheet" href="vendors/feather/feather.css">
-<link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-<link rel="stylesheet" href="vendors/typicons/typicons.css">
-<link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
-<link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="{{ asset('vendors/feather/feather.css') }}">
+<link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css') }}">
+<link rel="stylesheet" href="{{ asset('vendors/ti-icons/css/themify-icons.css') }}">
+<link rel="stylesheet" href="{{ asset('vendors/typicons/typicons.css') }}">
+<link rel="stylesheet" href="{{ asset('vendors/simple-line-icons/css/simple-line-icons.css') }}">
+<link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
 <!-- endinject -->
 <!-- Plugin css for this page -->
-<link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="js/select.dataTables.min.css">
+<link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+<link rel="stylesheet" href="{{ asset('js/select.dataTables.min.css') }}">
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="css/vertical-layout-light/style.css">
+<link rel="stylesheet" href="{{ asset('css/vertical-layout-light/style.css') }}">
 <!-- endinject -->
-<link rel="shortcut icon" href="images/favicon.png" />
+<link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
+
+{{-- search  --}}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     </head>
     <body>
@@ -58,26 +79,26 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item preview-item">
                           <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Bootstrap Bundle </p>
-                            <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards</p>
+                            <p class="preview-subject ellipsis font-weight-medium text-dark">Patient monitoring registration </p>
+                            <p class="fw-light small-text mb-0">Easy register HIV patients for continous health monitoring</p>
                           </div>
                         </a>
                         <a class="dropdown-item preview-item">
                           <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Angular Bundle</p>
-                            <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
+                            <p class="preview-subject ellipsis font-weight-medium text-dark">Patient progress tracking</p>
+                            <p class="fw-light small-text mb-0">Hospitals track HIV patient progress without physical cards</p>
                           </div>
                         </a>
                         <a class="dropdown-item preview-item">
                           <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">VUE Bundle</p>
-                            <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
+                            <p class="preview-subject ellipsis font-weight-medium text-dark">HIV progress recording</p>
+                            <p class="fw-light small-text mb-0">Detailed tracking of HIV progress and treatment metrics</p>
                           </div>
                         </a>
                         <a class="dropdown-item preview-item">
                           <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">React Bundle</p>
-                            <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard</p>
+                            <p class="preview-subject ellipsis font-weight-medium text-dark">Family History access</p>
+                            <p class="fw-light small-text mb-0">Access comprehensive family medical history and related data</p>
                           </div>
                         </a>
                       </div>
@@ -98,16 +119,16 @@
                             </a>
                         @else
                             <a
-                                href="{{ route('login') }}"
+                            type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#exampleModal"
                                 class="btn btn-danger"
                             >
                                 Log in
                             </a>
-
-
                         @endauth
 
                 @endif
+
+              
                     </li>
 
                   </ul>
@@ -124,13 +145,14 @@
 
 
                    <div class="mt-5">
-                    <h1>Easy track of an HIV patient</h1>
+                    <h1>Adult HIV confidential card </h1>
                     <ul  class="list-ticked">
-                        <li>Lorem ipsum dolor sit amet</li>
-                        <li>Lorem ipsum dolor sit amet</li>
-                        <li>Lorem ipsum dolor sit amet</li>
+                        <li>Full heath visibility and transparency</li>
+                        <li>Effiiciency and private record recalls</li>
+                        <li>Unique and confidential information</li>
+                       
                     </ul>
-
+                   
                     <div class="mt-4 text-gray-300 btn-s">
 
                       @if (Route::has('login'))
@@ -144,17 +166,16 @@
                           </a>
                       @else
                           <a
-                              href="{{ route('login') }}"
+                          type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#exampleModal"
                               class="btn btn-danger"
                           >
                               Log in
                           </a>
 
-
                       @endauth
 
               @endif
-
+            
                   </div>
                 </div>
                 </div>
@@ -166,6 +187,74 @@
               </div>
 
 
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="card">
+                    <div class="modal-header">
+                      <h5 class="modal-title text-danger" id="exampleModalLabel">Sign in</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <div aria-hidden="true" class="icon icon-box-danger ">
+                          <span class="mdi mdi-close-box text-danger"></span>
+                      </div>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                  
+    <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data">
+      {!!  csrf_field() !!}
+
+      <!-- Email Address -->
+      <div>
+          <x-input-label for="email" :value="__('Email')" />
+          <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+          <x-input-error :messages="$errors->get('email')" class="mt-2" />
+      </div>
+
+      <!-- Password -->
+      <div class="mt-4">
+          <x-input-label for="password" :value="__('Password')" />
+
+          <x-text-input id="password" class="block mt-1 w-full"
+                          type="password"
+                          name="password"
+                          required autocomplete="current-password" />
+
+          <x-input-error :messages="$errors->get('password')" class="mt-2" />
+      </div>
+
+      <!-- Remember Me -->
+      <div class="block mt-4">
+          <label for="remember_me" class="inline-flex items-center">
+              <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+              <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+          </label>
+      </div>
+
+      <div class="flex items-center justify-end mt-4">
+          @if (Route::has('password.request'))
+              <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                  {{ __('Forgot your password?') }}
+              </a>
+          @endif
+
+          <x-primary-button class="ms-3" >
+              {{ __('Log in') }}
+          </x-primary-button>
+
+          {{-- <button class="btn btn-danger ms-3">
+              {{ __('Log in') }}
+          </button> --}}
+      </div>
+  </form>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              </div>
+
 
                          
 
@@ -175,6 +264,7 @@
 
         </div>
 
+       
 
 
 
@@ -183,26 +273,24 @@
 
 
 
-
-                    <!-- plugins:js -->
-  <script src="vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="vendors/chart.js/Chart.min.js"></script>
-  <script src="vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-  <script src="vendors/progressbar.js/progressbar.min.js"></script>
-
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="js/dashboard.js"></script>
-  <script src="js/Chart.roundedBarCharts.js"></script>
-  <!-- End custom js for this page-->
+                         <!-- plugins:js -->
+                         <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
+                         <!-- endinject -->
+                         <!-- Plugin js for this page -->
+                         <script src="{{ asset('vendors/chart.js/Chart.min.js') }}"></script>
+                         <script src="{{ asset('vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+                         <script src="{{ asset('vendors/progressbar.js/progressbar.min.js') }}"></script>
+                       
+                         <!-- End plugin js for this page -->
+                         <!-- inject:js -->
+                         <script src="{{ asset('js/off-canvas.js') }}"></script>
+                         <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
+                         <script src="{{ asset('js/template.js') }}"></script>
+                         <script src="{{ asset('js/settings.js') }}"></script>
+                         <script src="{{ asset('js/todolist.js') }}"></script>
+                         <!-- endinject -->
+                         <!-- Custom js for this page-->
+                         <script src="{{ asset('js/dashboard.js') }}"></script>
+                         <script src="{{ asset('js/Chart.roundedBarCharts.js') }}"></script>
     </body>
 </html>

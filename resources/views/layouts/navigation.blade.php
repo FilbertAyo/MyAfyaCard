@@ -10,7 +10,7 @@
         </div>
 
         <div>
-            <a class="navbar-brand brand-logo text-danger" href="{{ route('dashboard.index') }}">
+            <a class="navbar-brand brand-logo text-danger" href="{{ route('pat_progress.index') }}">
                 My Afya Card
             </a>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">

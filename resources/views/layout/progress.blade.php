@@ -4,9 +4,9 @@
         <div class="home-tab">
 
     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
-        <ul class="nav nav-tabs mt-3" role="tablist">
+        <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item inline">
-            <a class="nav-link active ps-0" id="home-tab" href="{{ route('dashboard.index') }}" role="tab"  ><i class="mdi mdi-arrow-left"></i>Back</a>
+            <a class="nav-link active ps-0" id="home-tab" href="{{ route('pat_progress.index') }}" role="tab"  ><i class="mdi mdi-arrow-left"></i>Back</a>
           </li>
          
         </ul>
@@ -155,7 +155,7 @@
         </div>
         <div class="modal-body">
 
-            <form class="form-sample" method="POST" action="{{ route('dashboard.store') }}" enctype="multipart/form-data">
+            <form class="form-sample" method="POST" action="{{ route('pat_progress.store') }}" enctype="multipart/form-data">
                 {!!  csrf_field() !!}
 
                 <input type="hidden" name="patient_id" value="{{ $patient->id }}">
