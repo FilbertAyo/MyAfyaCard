@@ -68,8 +68,8 @@
                                 <td>{{ $metric->dosage }}</td>
                                 <td>{{ $metric->enrolment }}</td>
                                 <td>{{ $metric->other_med }}</td>
-                                <td></td>
-                                <td><label class="badge badge-primary">{{ $metric->visit_date }}<i class="ti-arrow-down text-primary"></i></label></td>
+                                <td><i class="ti-arrow-down text-danger">{{ $metric->prognosis }}</td>
+                                <td><label class="badge badge-primary">{{ $metric->visit_date }}</label></td>
                             </tr>
 
                             @endforeach
@@ -222,14 +222,11 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">prognosis</label>
-                            <div class="col-sm-9">
-                                <input type="date" class="form-control" name="visit_date" />
-                            </div>
-                        </div>
-                    </div> --}}
+                   
+                       {{-- prognosis  --}}
+                                <input type="hidden" class="form-control" name="prognosis" value="mark" />
+                          
+                   
                 </div>
 
                 <div class="row">

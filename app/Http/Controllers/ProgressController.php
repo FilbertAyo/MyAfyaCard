@@ -49,7 +49,7 @@ class ProgressController extends Controller
           'visit_date'=>$request->visit_date,
           'patient_id'=>$request->patient_id,
           'enrolment' =>$request->enrolment,
-          'prognosis' => null,
+          'prognosis' => $request->prognosis,
         ]);
 
         return redirect()->back()->with('success',"Metrics added successfully");
@@ -95,6 +95,19 @@ class ProgressController extends Controller
                         'y'=>$item->ratio
                     ];
                     });
+
+                    foreach ($metrics as $prod) {
+                        // Check if quantity is below 20
+                        if ($prod['cd']< 1000) {
+                            // Update status to 'low'
+                            $prod->update(['prognosis'=>'poor']);
+                        } elseif($prod['cd']> 1400) {
+                            // Update status to 'enough'
+                            $prod->update(['prognosis'=>'good']);
+                        }else{
+                            $prod->update(['prognosis'=>'moderate']);
+                        }
+                    }
        
         return view('layout.progress',['cdData'=> $formData ,'data'=> $formattedData, 'ratio'=>$ratioData],compact('patient','metrics'));
 
