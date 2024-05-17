@@ -13,9 +13,14 @@
     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">All Registered Patient</a>
+            <a class="nav-link active ps-0" href="{{ route('patient_register.index') }}">All Registered Patient</a>
           </li>
-       
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/patient_active') }}">Active Patient</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/patient_inactive') }}">Inactive Patient</a>
+          </li>
 
         </ul>
         <div>
@@ -49,6 +54,9 @@
                                     Name
                                 </th>
                                 <th>
+                                    Reg No.
+                                </th>
+                                <th>
                                     Phone number
                                 </th>
                                 <th>
@@ -79,6 +87,9 @@
                                    {{$pat_reg->first_name}} {{ $pat_reg->last_name }}
                                 </td>
                                 <td>
+                                    {{ $pat_reg->card_no }}
+                                  </td>
+                                <td>
                                   {{ $pat_reg->phone_number }}
                                 </td>
                                 <td>
@@ -103,14 +114,15 @@
                                 </td>
 
                                 <td class="flex">
-                                    <a href="{{ route('patient_register.show',$pat_reg->id) }}" class="btn btn-info mdi mdi-eye text-white"></a>
 
-                                    <form action="{{ route('patient_register.destroy',$pat_reg->id) }}" method="POST" class="" type= "button"  onsubmit="return confirm('Delete')">
-                                        @csrf
-                                        @method('DELETE')
+                                
+                                    @if(!$pat_reg->trashed())
+                        
+                                    <a href="{{ route('patient_register.show',$pat_reg->id) }}" class="btn btn-info mdi mdi-eye text-white"> active</a>
 
-                                                            <button class="btn btn-danger mdi mdi-delete text-white"></button>
-                                                        </form>
+                                @else
+                                    <span class="btn btn-danger text-white">inactive</span>
+                                @endif
                                 </td>
                             </tr>
 
@@ -182,6 +194,16 @@
                         </div>
                     </div>
                     <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Registration No.</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="card_no" required/>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Phone number</label>
@@ -190,15 +212,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Email *Optional</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="patient_email" required/>
-                                
-                                </div>
-                            </div>
-                        </div>
+                     
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -226,7 +240,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Drug Allergies (if any)</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="" name="allergy" required/>
+                                    <input type="text" class="form-control" placeholder="" name="allergy"/>
                                 </div>
                             </div>
                         </div>
@@ -295,7 +309,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Reason to visit *any condition on disease </label>
                                 <div class="col-sm-9 flex gap-2">
-                                    <input type="text" class="form-control" placeholder="Optional" name="reason" required/>
+                                    <input type="text" class="form-control" placeholder="" name="reason" required/>
 
                                 </div>
                             </div>

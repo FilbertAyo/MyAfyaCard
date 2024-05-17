@@ -48,7 +48,7 @@
                                 <th>Medicine</th>
                                 <th>Dosage</th>
                                 <th>Current status</th>
-                                <th>Other medicine</th>
+                                <th>Other med</th>
                                 <th>prognosis</th>
                                 <th>Next Visit</th>
                                 <th>Attended info</th>
@@ -270,7 +270,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Other medicine taken *if any</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="other_med" placeholder="eg Chloroquine." required/> 
+                                <input type="text" class="form-control" name="other_med" placeholder="eg Chloroquine."/> 
                             </div>
                         </div>
                     </div>
@@ -344,7 +344,7 @@
   <!-- inject:js -->
   <script src="{{ asset('js/off-canvas.js') }}"></script>
   <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
-  <script src="{{ asset('js/template.js') }}"></script>
+  {{-- <script src="{{ asset('js/template.js') }}"></script> --}}
   <script src="{{ asset('js/settings.js') }}"></script>
   <script src="{{ asset('js/todolist.js') }}"></script>
   <!-- endinject -->
@@ -352,6 +352,7 @@
   <script src="{{ asset('js/dashboard.js') }}"></script>
   <script src="{{ asset('js/Chart.roundedBarCharts.js') }}"></script>
   <!-- End custom js for this page-->
+
 
 
   <script>

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('weight');
             $table->string('medicine');
             $table->string('dosage');
-            $table->string('other_med');
+            $table->string('other_med')->nullable();
             $table->string('enrolment');
             $table->string('prognosis');
             $table->string('visit_date');

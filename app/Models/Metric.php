@@ -27,6 +27,10 @@ class Metric extends Model
         'doctor_contact'
     ];
 
+    protected $attributes = [
+        'other_med'=>'other_med',
+    ];
+
     public function patients()
     {
         return $this->belongsTo(Patient::class);

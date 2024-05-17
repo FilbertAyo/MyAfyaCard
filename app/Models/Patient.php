@@ -6,19 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Metric;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patient extends Model
 {
     use HasFactory;
 
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
     protected $fillable=[
         'id',
         'user_id',
+        'card_no',
         'first_name',
         'last_name',
         'contacts',
         'phone_number',
-        'patient_email',
         'gender',
         'birth_date',
         'street',
@@ -38,9 +43,14 @@ class Patient extends Model
         'local_contact',
         'mark',
         'reason',
-        'stage'
+        'stage',
+       
     ];
 
+     // Optionally, you can set default attributes for the model
+     protected $attributes = [
+        'allergy' => 'None',
+    ];
 
     public function metrics()
     {

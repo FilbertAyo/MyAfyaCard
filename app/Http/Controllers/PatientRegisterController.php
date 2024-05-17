@@ -15,12 +15,31 @@ class PatientRegisterController extends Controller
      */
     public function index()
     {
-        $patient_register = Patient::all();
+
+        $patient_register = Patient::withTrashed()->get();
+        // $patient_register = Patient::all();
         $user = DB::table('users')->get();
 
         return view('layout.patient_register',compact('patient_register','user'));
     }
 
+    public function inactive()
+    {
+        $patient_register = Patient::onlyTrashed()->get();
+
+        $user = DB::table('users')->get();
+       
+        return view('layout.patient_inactive',compact('patient_register','user'));
+    }
+
+    public function active()
+    {
+        $patient_register = Patient::all();
+
+        $user = DB::table('users')->get();
+       
+        return view('layout.patient_active',compact('patient_register','user'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -38,18 +57,21 @@ class PatientRegisterController extends Controller
 
         // Patient::create($requestData);
 
-       $patient =  Patient::create([
+        $allergy = $request->input('allergy') ?? 'None';
+
+
+            Patient::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
-            'patient_email'=> $request->patient_email,
+            'card_no'=> $request->card_no,
             'gender'=> $request->gender,
             'birth_date' => $request->birth_date,
             'street'=> $request->street,
             'district'=> $request->district,
             'city' => $request->city,
             'country'=> $request->country,
-            'allergy' => $request->allergy,
+            'allergy' => $allergy,
             'family_exposure'=> $request->family_exposure,
             'confirmed'=> $request->confirmed,
             'co_year' => $request->co_year,
@@ -125,11 +147,10 @@ class PatientRegisterController extends Controller
      */
     public function destroy(string $id)
     {
-        $patient_register= Patient::findOrFail($id);
-
-        $patient_register->delete();
-
-        return redirect()->route('patient_register.index')->with('success',"Patient deleted successfully");
-
+        $patient = Patient::findOrFail($id);
+        $patient->delete();
+    
+        return redirect()->route('patient_register.index')->with('success',"Patient deactivated successfully");
+        // return response()->json(['message' => 'Patient moved to history.']);
     }
 }

@@ -177,6 +177,21 @@
                             </div>
                         </div>
 
+                        <div class="list align-items-center py-2 mt-2">
+                            <div class="wrapper w-100 flex justify-center">
+                                <p class="mb-2 font-weight-medium">
+                                    <form action="{{ route('patient_register.destroy', $patient_register->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger mdi text-white">Deactivate patient</button>
+                                    </form>
+                                </p>
+                             
+                            </div>
+                        </div>
+
+             
+
                     </div>
                 </div>
             </div>

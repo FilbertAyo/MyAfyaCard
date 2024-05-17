@@ -31,8 +31,8 @@ Route::get('progress/{id}', [ProgressController::class, 'show'])->name('progress
 Route::resource('admin',AdminController::class);
 Route::get('low_progress', [ProgressController::class , 'low']);
 Route::get('good_progress', [ProgressController::class , 'good']);
-
-
+Route::get('patient_inactive',[PatientRegisterController::class,'inactive']);
+Route::get('patient_active',[PatientRegisterController::class,'active']);
 // Route::get('/test',[TestingController::class, 'index']);
 
 Route::resource('reg',RegisteredUserController::class);

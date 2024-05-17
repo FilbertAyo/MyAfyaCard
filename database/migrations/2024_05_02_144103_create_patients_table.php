@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->string('card_no');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone_number');
-            $table->string('patient_email');
             $table->string('gender');
             $table->string('birth_date');
             $table->string('street');
             $table->string('district');
             $table->string('city');
             $table->string('country');
-            $table->string('allergy');
+            $table->string('allergy')->nullable();
             $table->string('family_exposure');
             $table->string('confirmed');
             $table->string('co_year');
@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('mark')->default('-');
             $table->string('stage');
             $table->string('reason');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

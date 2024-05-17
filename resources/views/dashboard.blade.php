@@ -74,6 +74,9 @@
                                 <th>
                                     Name
                                 </th>
+                                <th>
+                                   Reg No.
+                                </th>
                                
                                 <th>
                                     Gender
@@ -103,6 +106,9 @@
                                    {{$patient->first_name}} {{ $patient->last_name }}
                                 </td>
                                 <td>
+                                    {{$patient->card_no}} 
+                                 </td>
+                                 <td>
                                     {{$patient->gender}} 
                                  </td>
                                  <td>

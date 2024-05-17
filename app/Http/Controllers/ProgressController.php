@@ -51,6 +51,9 @@ class ProgressController extends Controller
      */
     public function store(Request $request)
     {
+
+        $other_med = $request->input('other_med') ?? 'None';
+
       $metric =  Metric::create([
           'cd'=> $request->cd,
           'weight'=>$request->weight,
@@ -58,7 +61,7 @@ class ProgressController extends Controller
           'ratio'=>$request->ratio,
           'medicine'=>$request->medicine,
           'dosage'=>$request->dosage,
-          'other_med'=>$request->other_med,
+          'other_med'=>$other_med,
           'visit_date'=>$request->visit_date,
           'patient_id'=>$request->patient_id,
           'enrolment' =>$request->enrolment,
