@@ -180,7 +180,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">First Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="first_name" required/>
+                                    <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required/>
+                                    @if ($errors->has('first_name'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">first name given is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -188,7 +191,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Last Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="last_name" required/>
+                                    <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required/>
+                                    @if ($errors->has('last_name'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">last name given is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -199,7 +205,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Registration No.</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="card_no" required/>
+                                    <input type="text" class="form-control" name="card_no" value="{{ old('card_no') }}" required/>
+                                    @if ($errors->has('card_no'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">reg number should be of 10 digits</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -208,7 +217,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Phone number</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="phone_number" required/>
+                                    <input type="text" class="form-control" name="phone_number" value="{{ old('phone_number') }}" required/>
+                                    @if ($errors->has('phone_number'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">The contact format is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -219,7 +231,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Gender</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control" name="gender" value="{{ old('gender') }}">
           <option>Male</option>
           <option>Female</option>
         </select>
@@ -230,7 +242,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Date of Birth</label>
                                 <div class="col-sm-9">
-                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" name="birth_date" required/>
+                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" name="birth_date" value="{{ old('birth_date') }}" required/>
+                                    @if ($errors->has('birth_date'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">date you provide is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -240,7 +255,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Drug Allergies (if any)</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="" name="allergy"/>
+                                    <input type="text" class="form-control" placeholder="" name="allergy" value="{{ old('allergy') }}"/>
+                                    @if ($errors->has('allergy'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">allergy you provide is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -248,15 +266,11 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Family HIV exposure?</label>
                                 <div class="col-sm-9 flex gap-5">
-                                   
-                                        <label>
-                                            <input type="radio" class="mr-2 text-danger" name="family_exposure" value="Yes">
-                                            Yes
-                                        </label>
-                                        <label>
-                                            <input type="radio" class="mr-2 text-danger" name="family_exposure" value="No">
-                                            No
-                                        </label>
+                       
+                                        <select class="form-control" name="family_exposure" value="{{ old('family_exposure') }}" >
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                          </select>
                                 </div>
                             </div>
                         </div>
@@ -267,8 +281,11 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">confirmed HIV at </label>
                                 <div class="col-sm-9 flex gap-2">
-                                    <input type="text" class="form-control" placeholder="eg, Amana hospital" name="confirmed" required/>
-                                    <input type="number" class="form-control" min="1961" max="2024" id="year" name="co_year" step="1" placeholder="YYYY" required>
+                                    <input type="text" class="form-control" placeholder="eg, Amana hospital" name="confirmed" value="{{ old('confirmed') }}" required/>
+                                    @if ($errors->has('confirmed'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">the field is invalid</span>
+                                @endif
+                                    <input type="number" class="form-control" min="1961" max="2024" id="year" name="co_year" step="1" placeholder="YYYY" value="{{ old('co_year') }}" required>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +293,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Do you have partner?</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="partner">
+                                    <select class="form-control" name="partner" value="{{ old('partner') }}">
           <option>No</option>                              
           <option>Yes (-ve HIV)</option>
           <option>Yes (+ve HIV) </option>
@@ -293,7 +310,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">ART /Clinical stage at first visit</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="stage">
+                                    <select class="form-control" name="stage" value="{{ old('stage') }}">
           <option> Stage 1</option>                              
           <option> Stage 2</option>
           <option> Stage 3</option>
@@ -309,8 +326,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Reason to visit *any condition on disease </label>
                                 <div class="col-sm-9 flex gap-2">
-                                    <input type="text" class="form-control" placeholder="" name="reason" required/>
-
+                                    <input type="text" class="form-control" placeholder="" name="reason" value="{{ old('reason') }}" required />
+                                    @if ($errors->has('reason'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">the field is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -325,7 +344,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Street</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="street" required/>
+                                    <input type="text" class="form-control" name="street" value="{{ old('street') }}" required/>
+                                    @if ($errors->has('street'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">the input is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -333,7 +355,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">District</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="district" required/>
+                                    <input type="text" class="form-control" name="district" value="{{ old('district') }}" required/>
+                                    @if ($errors->has('district'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">the input is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -344,7 +369,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">City</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="city" required/>
+                                    <input type="text" class="form-control" name="city" value="{{ old('city') }}" required/>
+                                    @if ($errors->has('city'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">the input is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -352,7 +380,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nationality</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="country">
+                                    <select class="form-control" name="country" value="{{ old('country') }}">
           <option>Tanzanian</option>
           <option>Kenyan</option>
           <option>Ugandan</option>
@@ -374,7 +402,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Supporter name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="supporter" required/>
+                                    <input type="text" class="form-control" name="supporter" value="{{ old('supporter') }}" required/>
+                                    @if ($errors->has('supporter'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">the name is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -382,7 +413,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Supporter relation</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="relation">
+                                    <select class="form-control" name="relation" value="{{ old('relation') }}">
           <option>Mother</option>
           <option>Father</option>
           <option>Sister</option>
@@ -405,7 +436,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Address</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="sup_address" required/>
+                                    <input type="text" class="form-control" name="sup_address" value="{{ old('sup_address') }}" required/>
                                 </div>
                             </div>
                         </div>
@@ -413,7 +444,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Contact</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="sup_contact" required/>
+                                    <input type="text" class="form-control" name="sup_contact" value="{{ old('sup_contact') }}" required/>
+                                    @if ($errors->has('sup_contact'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">The contact format is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -424,7 +458,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Local leader</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="local_leader" required/>
+                                    <input type="text" class="form-control" name="local_leader" value="{{ old('local_leader') }}" required/>
+                                    @if ($errors->has('local_leader'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">the name is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -432,7 +469,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Local leader Contact</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="local_contact" required/>
+                                    <input type="text" class="form-control" name="local_contact" value="{{ old('local_contact') }}" required/>
+                                    @if ($errors->has('local_contact'))
+                                    <span class="text-danger text-sm" style="font-size: 10px;">The contact format is invalid</span>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -461,7 +501,13 @@
 
 
 
-
+      <script>
+        @if ($errors->any())
+            $(document).ready(function() {
+                $('#exampleModal').modal('show');
+            });
+        @endif
+    </script>
 
     <style>
         .custom-modal .modal-dialog{

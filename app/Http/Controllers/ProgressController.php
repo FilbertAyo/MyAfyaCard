@@ -52,6 +52,21 @@ class ProgressController extends Controller
     public function store(Request $request)
     {
 
+
+        $validatedData =  $request->validate([
+            'other_med' => 'required|regex:/^[a-zA-Z\s]+$/|max:100',
+            'doctor' => 'required|regex:/^[a-zA-Z\s]+$/|max:40',
+            'doctor_contact' => [
+                'required',
+                'regex:/^0[67][0-9]{8}$/'
+            ],
+            'cd' => 'required|integer|min:0|max:1500', 
+        'viral_load' => 'required|integer|min:0', 
+        'weight' => 'required|numeric|min:1', 
+        'ratio' => 'required|numeric|min:0|max:1', 
+        'visit_date' => 'required|date|after:today', 
+        ]);
+
         $other_med = $request->input('other_med') ?? 'None';
 
       $metric =  Metric::create([

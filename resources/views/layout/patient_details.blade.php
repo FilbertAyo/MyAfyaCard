@@ -44,8 +44,8 @@
                                         <p class="mb-0 text-small text-muted">{{ $patient_register->first_name }} {{ $patient_register->last_name }}</p>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <i class="mdi mdi-account-multiple text-muted me-1"></i>
-                                        <p class="mb-0 text-small text-muted">Family exposure: {{ $patient_register->family_exposure }}</p>
+                                        <i class="text-muted me-1"></i>
+                                        <p class="mb-0 text-small text-muted">ID: <strong class="text-danger">{{ $patient_register->card_no }}</strong> </p>
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +94,10 @@
                                     <div class="d-flex align-items-center">
                                         <i class="mdi mdi-account-multiple-outline text-muted me-1"></i>
                                         <p class="mb-0 text-small text-muted">{{ $patient_register->gender }}</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="mdi mdi-account-multiple text-muted me-1"></i>
+                                        <p class="mb-0 text-small text-muted">Family exposure: {{ $patient_register->family_exposure }}</p>
                                     </div>
                                 </div>
                             </div>

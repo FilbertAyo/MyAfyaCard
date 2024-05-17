@@ -85,14 +85,14 @@
                                  
                                       <div class="btn-group dropup">
                                       
-                                        <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split text-white" id="dropupMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split text-white" id="dropupMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ti-user"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropupMenuSplitButton1">
                                       
-                                          <a class="dropdown-item" href="#">Doctor name:<strong class="text-success">{{ $metric->doctor }}</strong>  </a>
+                                          <a class="dropdown-item" href="#">Doctor name:<strong class="text-primary">{{ $metric->doctor }}</strong>  </a>
                                           <div class="dropdown-divider"></div>
-                                          <a class="dropdown-item" href="#">Contact No: <strong class="text-success">{{ $metric->doctor_contact }}</strong> </a>
+                                          <a class="dropdown-item" href="#">Contact No: <strong class="text-primary">{{ $metric->doctor_contact }}</strong> </a>
                                         </div>
                                       </div>
                                 </td>
@@ -179,7 +179,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">CD4</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="cd" placeholder="cells per cubic millimeter" required/>
+                                <input type="text" class="form-control" name="cd" placeholder="cells per cubic millimeter"  value="{{ old('cd') }}" required/>
+                                @if ($errors->has('cd'))
+                                <span class="text-danger text-sm" style="font-size: 10px;">the value is invalid</span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -187,7 +190,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Viral Load</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="viral_load" placeholder="copies per millimeter" required/>
+                                <input type="text" class="form-control" name="viral_load" placeholder="copies per millimeter" value="{{ old('viral_load') }}" required/>
+                                @if ($errors->has('viral_load'))
+                                <span class="text-danger text-sm" style="font-size: 10px;">the value is invalid</span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -197,7 +203,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">CD4/CD8 ratio</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="ratio" placeholder="" required/> 
+                                <input type="text" class="form-control" name="ratio" placeholder=""  value="{{ old('ratio') }}" required/> 
+                                @if ($errors->has('ratio'))
+                                <span class="text-danger text-sm" style="font-size: 10px;">the ratio should be less than 1</span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -205,7 +214,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Weight</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="weight" placeholder="kg" required/>
+                                <input type="text" class="form-control" name="weight" placeholder="kg"  value="{{ old('weight') }}" required/>
+                                @if ($errors->has('weight'))
+                                <span class="text-danger text-sm" style="font-size: 10px;">the weight is invalid</span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -217,7 +229,7 @@
                             <label class="col-sm-3 col-form-label">status enrolment</label>
                             
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="enrolment">
+                                    <select class="form-control" name="enrolment"  value="{{ old('enrolment') }}">
           <option>Pregnant</option>
           <option>sick with no TB illness</option>
           <option>TB treatment</option>
@@ -234,7 +246,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Medicine</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="medicine">
+                                <select class="form-control" name="medicine"  value="{{ old('medicine') }}">
       <option>Antiretroviral(ARV)</option>
       <option>dolutegravir</option>
       <option>bictegravir</option>
@@ -253,7 +265,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Dosage</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="dosage" required/>
+                                <input type="text" class="form-control" name="dosage"  value="{{ old('dosage') }}" required/>
                             </div>
                         </div>
                     </div>
@@ -270,7 +282,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Other medicine taken *if any</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="other_med" placeholder="eg Chloroquine."/> 
+                                <input type="text" class="form-control" name="other_med" placeholder="eg Chloroquine."  value="{{ old('other_med') }}"/> 
+                                @if ($errors->has('other_med'))
+                                <span class="text-danger text-sm" style="font-size: 10px;">the field you provide is invalid</span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -278,7 +293,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Next visit</label>
                             <div class="col-sm-9">
-                                <input type="date" class="form-control" name="visit_date" required/>
+                                <input type="date" class="form-control" name="visit_date" required  value="{{ old('visit_date') }}"/>
+                                @if ($errors->has('visit_date'))
+                                <span class="text-danger text-sm" style="font-size: 10px;">the schedule is not valid</span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -293,7 +311,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Attended by (name)</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="doctor" placeholder="eg DR. somebody." required/> 
+                                <input type="text" class="form-control" name="doctor" placeholder="eg DR. somebody."  value="{{ old('doctor') }}" required/> 
+                                @if ($errors->has('doctor'))
+                                <span class="text-danger text-sm" style="font-size: 10px;">name is invalid,remove special character</span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -301,7 +322,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">contact</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="doctor_contact" required/>
+                                <input type="text" class="form-control" name="doctor_contact"  value="{{ old('doctor_contact') }}" required/>
+                                @if ($errors->has('doctor_contact'))
+                                <span class="text-danger text-sm" style="font-size: 10px;">the contact is invalid</span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -322,7 +346,13 @@
 
 
 
-
+  <script>
+    @if ($errors->any())
+        $(document).ready(function() {
+            $('#exampleModal').modal('show');
+        });
+    @endif
+</script>
 
 
   <style>

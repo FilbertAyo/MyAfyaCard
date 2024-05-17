@@ -53,15 +53,38 @@ class PatientRegisterController extends Controller
      */
     public function store(Request $request)
     {
-        // $requestData= $request->all();
-
-        // Patient::create($requestData);
+        $validatedData =  $request->validate([
+            'first_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:40', // Ensure the name contains only alphabetic characters
+            'last_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:40',
+            'phone_number' => [
+                'required',
+                'regex:/^0[67][0-9]{8}$/'
+            ],
+            'sup_contact' => [
+                'required',
+                'regex:/^0[67][0-9]{8}$/'
+            ],
+            'local_contact' => [
+                'required',
+                'regex:/^0[67][0-9]{8}$/'
+            ],
+            'street' => 'required|regex:/^[a-zA-Z\s]+$/|max:40',
+            'district' => 'required|regex:/^[a-zA-Z\s]+$/|max:40',
+            'city' => 'required|regex:/^[a-zA-Z\s]+$/|max:40',
+            'confirmed' => 'required|regex:/^[a-zA-Z\s]+$/|max:40',
+            'supporter' => 'required|regex:/^[a-zA-Z\s]+$/|max:40',
+            'local_leader' => 'required|regex:/^[a-zA-Z\s]+$/|max:40',
+            'reason' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
+            'allergy' => 'required|regex:/^[a-zA-Z\s]+$/|max:140',
+            'card_no' => 'required|digits:10',
+            'birth_date' => 'required|date|before:today', 
+        ]);
 
         $allergy = $request->input('allergy') ?? 'None';
 
 
             Patient::create([
-            'first_name' => $request->first_name,
+            'first_name' =>  $validatedData['first_name'],
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
             'card_no'=> $request->card_no,
