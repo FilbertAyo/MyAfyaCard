@@ -67,7 +67,7 @@
                                 </th>
 
                                 <th>
-                                    Action
+                                    Status
                                 </th>
                             </tr>
                         </thead>

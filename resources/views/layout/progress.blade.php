@@ -90,9 +90,9 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropupMenuSplitButton1">
                                       
-                                          <a class="dropdown-item" href="#">Doctor:{{ $metric->doctor }} </a>
+                                          <a class="dropdown-item" href="#">Doctor name:<strong class="text-success">{{ $metric->doctor }}</strong>  </a>
                                           <div class="dropdown-divider"></div>
-                                          <a class="dropdown-item" href="#">Contact No: {{ $metric->doctor_contact }}</a>
+                                          <a class="dropdown-item" href="#">Contact No: <strong class="text-success">{{ $metric->doctor_contact }}</strong> </a>
                                         </div>
                                       </div>
                                 </td>

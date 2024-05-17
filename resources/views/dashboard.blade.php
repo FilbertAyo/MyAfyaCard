@@ -135,7 +135,7 @@
 
                                  </td>
                                 <td>
-                                    <a href="{{ route('pat_progress.show' , $patient->id) }}" class="btn btn-info text-white">progres</a>
+                                    <a href="{{ route('pat_progress.show' , $patient->id) }}" class="btn btn-primary text-white">progres</a>
                                 </td>
                             </tr>
 
