@@ -5,23 +5,23 @@
     <div class="col-sm-12">
         <div class="home-tab">
 
-            <div class="d-sm-flex align-items-center justify-start mb-2 mt-3">
+            <div class="d-sm-flex align-items-center justify-start mb-2">
                 <h4 class="text-danger">HIV patient progress</h4>
             </div>
 
     <div class="d-sm-flex align-items-center justify-content-between border-bottom">
         <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" href="{{ route('pat_progress.index') }}">All</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"  href="{{ url('good_progress') }}">Progress <i class="mdi mdi-arrow-top-right text-success"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('low_progress') }}">Progress <i class="mdi mdi-arrow-bottom-left text-danger"></i></a>
-          </li>
-
-        </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('pat_progress.index') }}">All</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active"  href="{{ url('good_progress') }}">Progress <i class="mdi mdi-arrow-top-right text-success"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('low_progress') }}">Progress <i class="mdi mdi-arrow-bottom-left text-danger"></i></a>
+            </li>
+  
+          </ul>
        
           
 
@@ -29,19 +29,18 @@
             <button class="btn btn-secondary dropdown-toggle toggle-dark btn-lg mb-0 me-0 text-primary" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Overview </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                 <h6 class="dropdown-header text-primary">Patients data</h6>
-                <a class="dropdown-item" href="#">Total patients : {{ session('totalPatient',0) }} </a>
-                <a class="dropdown-item" href="#">Good progress: {{ session('goodPatient',0) }} </a>
-                <a class="dropdown-item text-danger" href="#">Poor progress: {{ session('poorPatient',0) }} </a>
-                <a class="dropdown-item" href="#">Average progress: {{ session('averagePatient',0) }} </a>
-                {{-- <h6 class="dropdown-header text-primary">Percentage progress</h6>
+                <a class="dropdown-item" href="#">Total patients : 164 </a>
+                <a class="dropdown-item" href="#">Good progress: 85</a>
+                <a class="dropdown-item" href="#">Poor progress: 79</a>
+                <h6 class="dropdown-header text-primary">Percentage progress</h6>
                 <a class="dropdown-item" href="#">  <div>
                     <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
                         <p class="text-success">79%</p>
-                        <p>{{ session('goodPatient',0) }}/{{ session('totalPatient',0) }}</p>
+                        <p>85/162</p>
                     </div>
                     <div class="progress progress-md">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ session('goodPatient',0) }}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="{{ session('totalPatient',0) }}"></div>
-                    </div> --}}
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
             </a>
                 
@@ -61,7 +60,7 @@
             <div class="card-body">
             
                 <div class="d-sm-flex justify-content-between">
-                    <h3 class="card-title">HIV Progress report</h3> 
+                    <h3 class="card-title">HIV Progress report</h3>
                     <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search any data " style="width: 30%;">
                 </div>
                 <div class="table-responsive pt-3">
@@ -74,12 +73,8 @@
                                 <th>
                                     Name
                                 </th>
-                               
                                 <th>
                                     Gender
-                                </th>
-                                <th>
-                                    HIV(first visit)
                                 </th>
                                 <th>
                                     Status (due to last visit)
@@ -95,6 +90,7 @@
                             @if($patient->count()>0)
                             @foreach ($patient as $patient)
 
+                            @if($patient->mark === 'good' || $patient->mark === 'satisfying')
                             <tr>
                                 <td>
                                     {{ $loop->iteration }}
@@ -105,11 +101,7 @@
                                 <td>
                                     {{$patient->gender}} 
                                  </td>
-                                 <td>
-                                    {{$patient->stage}} 
-                                 </td>
                                 <td>
-                           
                                      
                                     @if($patient->mark === 'poor')
                                 
@@ -117,14 +109,9 @@
                                 @elseif($patient->mark === 'good')
                        
                                     <i class="badge mdi mdi-arrow-up badge-success text-success">good</i>
-                                @elseif($patient->mark === 'satisfying')
-    
-                                <i class="badge mdi mdi-swap-vertical badge-warning text-warning">satsfying</i>
-
                                 @else
-
-                                <i class="text-primary"> no records </i>
-
+                              
+                                <i class="badge mdi mdi-swap-vertical badge-warning text-warning">satsfying</i>
                                 @endif
 
                                  </td>
@@ -132,7 +119,8 @@
                                     <a href="{{ route('pat_progress.show' , $patient->id) }}" class="btn btn-info text-white">progres</a>
                                 </td>
                             </tr>
-
+                         
+                      @endif
                             @endforeach
                             @else
                             <tr>

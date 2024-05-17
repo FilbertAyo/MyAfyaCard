@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone_number');
@@ -34,6 +35,9 @@ return new class extends Migration
             $table->string('sup_contact');
             $table->string('local_leader');
             $table->string('local_contact');
+            $table->string('mark')->default('-');
+            $table->string('stage');
+            $table->string('reason');
             $table->timestamps();
         });
     }

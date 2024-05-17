@@ -4,8 +4,9 @@
     <div class="col-sm-12">
         <div class="home-tab">
 
-            <div class="d-sm-flex align-items-center justify-start mb-2 ">
+            <div class="d-sm-flex align-items-center justify-start mb-2 mt-3">
                 <h4 class="text-danger">HIV Registered patient</h4>
+           
             </div>
 
 
@@ -14,12 +15,7 @@
           <li class="nav-item">
             <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">All Registered Patient</a>
           </li>
-          {{-- <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#audiences" role="tab" aria-selected="false">Progress</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#demographics" role="tab" aria-selected="false">Progress</a>
-          </li> --}}
+       
 
         </ul>
         <div>
@@ -89,6 +85,7 @@
                                     {{ $pat_reg->gender }}
                                 </td>
                                 <td>
+
                                 @php
 
                               $birthdate = $pat_reg->birth_date ;
@@ -97,7 +94,6 @@
                                     $age = \Carbon\Carbon::parse($birthdate)->age;
                                 }
                                 @endphp
-
 
                                     {{ $age }}
                                 </td>
@@ -162,12 +158,17 @@
                     <p class="card-description">
                         Personal info
                     </p>
+
+             {{-- the hidden data  --}}
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="mark" value="no record">
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">First Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="first_name" />
+                                    <input type="text" class="form-control" name="first_name" required/>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +176,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Last Name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="last_name"/>
+                                    <input type="text" class="form-control" name="last_name" required/>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +186,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Phone number</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="phone_number" />
+                                    <input type="text" class="form-control" name="phone_number" required/>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +194,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Email *Optional</label>
                                 <div class="col-sm-9">
-                                    <input type="email" class="form-control" name="patient_email"/>
+                                    <input type="text" class="form-control" name="patient_email" required/>
+                                
                                 </div>
                             </div>
                         </div>
@@ -214,7 +216,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Date of Birth</label>
                                 <div class="col-sm-9">
-                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" name="birth_date"/>
+                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" name="birth_date" required/>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +226,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Drug Allergies (if any)</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="" name="allergy"/>
+                                    <input type="text" class="form-control" placeholder="" name="allergy" required/>
                                 </div>
                             </div>
                         </div>
@@ -251,8 +253,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">confirmed HIV at </label>
                                 <div class="col-sm-9 flex gap-2">
-                                    <input type="text" class="form-control" placeholder="eg, Amana hospital" name="confirmed" />
-                                    <input type="number" class="form-control" min="1900" id="year" name="co_year" step="1" placeholder="YYYY">
+                                    <input type="text" class="form-control" placeholder="eg, Amana hospital" name="confirmed" required/>
+                                    <input type="number" class="form-control" min="1961" max="2024" id="year" name="co_year" step="1" placeholder="YYYY" required>
                                 </div>
                             </div>
                         </div>
@@ -272,16 +274,44 @@
                         </div>
                       
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">ART /Clinical stage at first visit</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="stage">
+          <option> Stage 1</option>                              
+          <option> Stage 2</option>
+          <option> Stage 3</option>
+          <option> Stage 4</option>
+         
+          
+                                 </select>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Reason to visit *any condition on disease </label>
+                                <div class="col-sm-9 flex gap-2">
+                                    <input type="text" class="form-control" placeholder="Optional" name="reason" required/>
+
+                                </div>
+                            </div>
+                        </div>
+                     
+                    </div>
 
                     <p class="card-description">
-                        Address
+                       Patient Address
                     </p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Street</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="street" />
+                                    <input type="text" class="form-control" name="street" required/>
                                 </div>
                             </div>
                         </div>
@@ -289,7 +319,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">District</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="district" />
+                                    <input type="text" class="form-control" name="district" required/>
                                 </div>
                             </div>
                         </div>
@@ -300,7 +330,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">City</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="city"/>
+                                    <input type="text" class="form-control" name="city" required/>
                                 </div>
                             </div>
                         </div>
@@ -330,7 +360,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Supporter name</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="supporter" />
+                                    <input type="text" class="form-control" name="supporter" required/>
                                 </div>
                             </div>
                         </div>
@@ -349,6 +379,7 @@
           <option>Wife</option>
           <option>Partner</option>
           <option>Other</option>
+          <option>No one</option>
                                  </select>
                                 </div>
                             </div>
@@ -360,7 +391,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Address</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="sup_address" />
+                                    <input type="text" class="form-control" name="sup_address" required/>
                                 </div>
                             </div>
                         </div>
@@ -368,7 +399,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Contact</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="sup_contact" />
+                                    <input type="text" class="form-control" name="sup_contact" required/>
                                 </div>
                             </div>
                         </div>
@@ -379,7 +410,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Local leader</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="local_leader" />
+                                    <input type="text" class="form-control" name="local_leader" required/>
                                 </div>
                             </div>
                         </div>
@@ -387,7 +418,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Local leader Contact</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="local_contact" />
+                                    <input type="text" class="form-control" name="local_contact" required/>
                                 </div>
                             </div>
                         </div>

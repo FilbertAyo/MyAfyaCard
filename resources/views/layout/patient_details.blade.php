@@ -31,7 +31,7 @@
                 
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <h4 class="card-title card-title-dash">Patient details</h4>
-                            {{-- <p class="mb-0"><i class="mdi mdi-timer text-primary"></i>{{ $patient_register->co_year }}</p> --}}
+                            <p class="mb-0"><i class="mdi mdi-library-books text-primary"></i></p>
                         </div>
                         <div class="list align-items-center border-bottom py-2">
                             <div class="wrapper w-100">
@@ -44,7 +44,7 @@
                                         <p class="mb-0 text-small text-muted">{{ $patient_register->first_name }} {{ $patient_register->last_name }}</p>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <i class="mdi mdi-account text-muted me-1"></i>
+                                        <i class="mdi mdi-account-multiple text-muted me-1"></i>
                                         <p class="mb-0 text-small text-muted">Family exposure: {{ $patient_register->family_exposure }}</p>
                                     </div>
                                 </div>
@@ -57,10 +57,13 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
-                                        <i class="mdi mdi-account text-muted me-1"></i>
+                                        <i class="mdi mdi-hospital text-muted me-1"></i>
                                         <p class="mb-0 text-small text-muted">HIV confirmed by {{ $patient_register->confirmed }} in {{ $patient_register->co_year }}</p>
                                     </div>
-                                   
+                                    <div class="d-flex align-items-center">
+                                        <i class="mdi mdi-plus-box text-muted me-1"></i>
+                                        <p class="mb-0 text-small text-muted">HIV: {{ $patient_register->stage }} </p>
+                                    </div>
                         
                                 </div>
                             </div>
@@ -76,7 +79,7 @@
                                         <p class="mb-0 text-small text-muted">born in {{ $patient_register->birth_date }}</p>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <i class="mdi mdi-account text-muted me-1"></i>
+                                        <i class="mdi mdi-checkbox-multiple-blank-circle text-muted me-1"></i>
                                         <p class="mb-0 text-small text-muted">Allergy of : {{ $patient_register->allergy }} </p>
                                     </div>
                                 </div>
@@ -115,7 +118,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
-                                        <i class="mdi mdi-nature text-muted me-1"></i>
+                                        <i class="mdi mdi-flag text-muted me-1"></i>
                                         <p class="mb-0 text-small text-muted">{{ $patient_register->country }}</p>
                                     </div>
                                 </div>
@@ -128,7 +131,7 @@
                                 </p> 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
-                                        <i class="mdi mdi-nature text-muted me-1"></i>
+                                        <i class="mdi mdi-account-network text-muted me-1"></i>
                                         <p class="mb-0 text-small text-muted">{{ $patient_register->supporter }}, {{ $patient_register->sup_address }}, {{ $patient_register->sup_contact }}</p>
                                     </div>
                                 </div>
@@ -141,8 +144,21 @@
                                 </p> 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
-                                        <i class="mdi mdi-nature text-muted me-1"></i>
+                                        <i class="mdi mdi-account-box-outline text-muted me-1"></i>
                                         <p class="mb-0 text-small text-muted">{{ $patient_register->partner }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list align-items-center border-bottom py-2">
+                            <div class="wrapper w-100">
+                                <p class="mb-2 font-weight-medium">
+                                    Reason for first visit: 
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <i class="mdi mdi-av-timer text-muted me-1"></i>
+                                        <p class="mb-0 text-small text-muted">{{ $patient_register->reason }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -174,26 +190,42 @@
                         <ul class="bullet-line-list">
                             <li>
                                 <div class="d-flex justify-content-between">
-                                    <div><span class="text-danger">{{ $patient_register->first_name }} {{ $patient_register->last_name }}'s</span> profile created on </div>                 
+                                    {{-- <div><span class="text-danger">{{ $patient_register->first_name }} {{ $patient_register->last_name }}'s</span> profile created on </div>                  --}}
+                                    <div class="d-flex align-items-center mb-4">
+                                        
+                                        <i class="mdi mdi-hospital me-1 text-danger"></i>
+                                        <p class="mb-0 "> <span class="text-danger">{{ $patient_register->first_name }} {{ $patient_register->last_name }}'s </span> HIV confirmed by <strong class="text-primary">{{ $patient_register->confirmed }}</strong> in <strong class="text-primary">{{ $patient_register->co_year }}</strong></p>
+                                    </div>
+                                </div>
+                            </li>
+                            @foreach ($patient as $patient)
+                            <li>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div><span class="text-light-green">Registered by <strong class="text-primary">{{ $patient->user->name }}</strong></span> </div>
+                                    {{-- <p class="btn btn-inverse-info">{{ $currentTime->toDateTimeString() }}</p> --}}
+                                </div>
+                            </li>
+                                        @endforeach
+                            <li>
+                                <div class="d-flex justify-content-between">
+                                    <div>The profile created on </div>                 
                                     <p class="btn btn-inverse-warning">{{ $patient_register->created_at }}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="d-flex justify-content-between">
-                                    <div><span class="text-danger">{{ $patient_register->first_name }} {{ $patient_register->last_name }}'s</span> profile updated on </div>
+                                    <div>The profile updated on </div>
                                     <p class="btn btn-inverse-warning">{{ $patient_register->updated_at }}</p>
                                 </div>
                             </li>
 
-                            @foreach ($user as $user)
-                            <li>
-                                <div class="d-flex justify-content-between">
-                                    <div><span class="text-light-green">{{ $user->name }}</span> visited this profile at</div>
-                                    <p class="btn btn-inverse-info">{{ $currentTime->toDateTimeString() }}</p>
-                                </div>
-                            </li>
-                                        @endforeach
                            
+                           
+                                        {{-- <li>
+                                            <div class="d-flex justify-content-between">
+                                                <div>this profile created by <span class="text-light-green">{{ $patient_register->partner }}</span> </div>
+                                            </div>
+                                        </li> --}}
 
                         </ul>
                         <div class="list align-items-center pt-3">

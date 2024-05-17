@@ -71,7 +71,7 @@
 
                     {{-- //dark and bg-white --}}
 
-                    <div class="theme-setting-wrapper">
+                    {{-- <div class="theme-setting-wrapper">
                         <div id="settings-trigger"><i class="ti-settings"></i></div>
                         <div id="theme-settings" class="settings-panel">
                           <i class="settings-close ti-close"></i>
@@ -80,7 +80,7 @@
                           <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Dark</div>
 
                         </div>
-                      </div>
+                      </div> --}}
 
 
                 {{ $slot }}

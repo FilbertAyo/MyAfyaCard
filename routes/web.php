@@ -29,6 +29,10 @@ Route::resource('patient_register',PatientRegisterController::class);
 Route::resource('pat_progress',ProgressController::class);
 Route::get('progress/{id}', [ProgressController::class, 'show'])->name('progress.show');
 Route::resource('admin',AdminController::class);
+Route::get('low_progress', [ProgressController::class , 'low']);
+Route::get('good_progress', [ProgressController::class , 'good']);
+
+
 // Route::get('/test',[TestingController::class, 'index']);
 
 Route::resource('reg',RegisteredUserController::class);

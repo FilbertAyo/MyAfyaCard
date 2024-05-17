@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('enrolment');
             $table->string('prognosis');
             $table->string('visit_date');
+            $table->string('doctor');
+            $table->string('doctor_contact');
             $table->timestamps();
         });
     }

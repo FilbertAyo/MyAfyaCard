@@ -22,7 +22,9 @@ class Metric extends Model
         'other_med',
         'visit_date',
         'enrolment',
-        'prognosis'
+        'prognosis',
+        'doctor',
+        'doctor_contact'
     ];
 
     public function patients()

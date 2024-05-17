@@ -103,8 +103,8 @@
                   <p class="mb-1 mt-3 font-weight-semibold">  {{ Auth::user()->name }}</p>
                   <p class="fw-light text-muted mb-0">  {{ Auth::user()->email }}</p>
               </x-dropdown-link>
-              <x-dropdown-link :href="route('profile.edit')" class="border-bottom">
-              {{ __('Profile') }}
+              <x-dropdown-link :href="route('profile.edit')" class="border-bottom flex gap-3">
+                <span class="mdi mdi-account text-primary"></span> <span> Profile </span>
               </x-dropdown-link>
 
               <!-- Authentication -->
@@ -112,9 +112,11 @@
                   @csrf
 
                   <x-dropdown-link :href="route('logout')"
+                  class="flex gap-3"
                           onclick="event.preventDefault();
                                       this.closest('form').submit();">
-                      {{ __('Log Out') }}
+                      {{-- {{ __('Log Out') }} --}}
+                      <span class="mdi mdi-logout text-danger"></span> <span> Log out </span>
                   </x-dropdown-link>
               </form>
           </x-slot>
@@ -179,7 +181,7 @@
                         </ul>
                         <div>
                           <div class="btn-wrapper">
-                            <btton class="btn btn-primary text-white" type="button" data-toggle="modal" data-target="#exampleModal"> Register hopital</btton>
+                            <btton class="btn btn-primary text-white" type="button" data-toggle="modal" data-target="#exampleModal"> Register hospital</btton>
                           </div>
                         </div>
                       </div>
@@ -206,17 +208,25 @@
                                                     <h4 class="card-title card-title-dash">{{ $user->name }}</h4>
                                                 </div>
                                                 <div>
-                                                  {{-- <a href="{{ route('admin.destroy',$user->id) }}"><i class="mdi mdi-delete text-danger"></i></a> --}}
-                                                  <a href="">
+     
+                                                  @if($user->userType === '0')
+                                             
+                                                  <form action="{{ route('admin.destroy',$user->id) }}" method="POST" type= "button" class=" height-auto p-0" onsubmit="return confirm('Delete')">
+                                                    @csrf
+                                                    @method('DELETE')
+                
+                                                                        <button class="mdi mdi-delete text-danger"></button>
+                                                                    </form>
 
-                                                    <form action="{{ route('admin.destroy',$user->id) }}" method="POST" type= "button" class=" height-auto p-0" onsubmit="return confirm('Delete')">
-                                                        @csrf
-                                                        @method('DELETE')
+                                              @else
+
+                                              <div><h4 class="card-title card-title-dash text-danger">Admin</h4></div>
+                                             
+                                              @endif
+
+                                           
                     
-                                                                            <button class="mdi mdi-delete text-danger"></button>
-                                                                        </form>
-                    
-                                                </a>
+                                              
                                                 </div>
                                             </div>
                                             <div class="mt-3">

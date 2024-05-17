@@ -36,11 +36,12 @@
 
             <x-slot name="content">
                 <x-dropdown-link class="text-center border-bottom">
-                    <p class="mb-1 mt-3 font-weight-semibold">  {{ Auth::user()->name }}</p>
+                    <p class="mt-2 font-weight-semibold">  <span class="mdi mdi-hospital text-primary"> </p>
+                    <p class="mb-1 mt-1 font-weight-semibold">  {{ Auth::user()->name }}</p>
                     <p class="fw-light text-muted mb-0">  {{ Auth::user()->email }}</p>
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('profile.edit')" class="border-bottom">
-                {{ __('Profile') }}
+                <x-dropdown-link :href="route('profile.edit')" class="border-bottom flex gap-3">
+                    <span class="mdi mdi-account text-primary"></span> <span> Profile </span>
                 </x-dropdown-link>
 
                 <!-- Authentication -->
@@ -48,9 +49,11 @@
                     @csrf
 
                     <x-dropdown-link :href="route('logout')"
+                    class="flex gap-3"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{-- {{ __('Log Out') }} --}}
+                        <span class="mdi mdi-logout text-danger"></span> <span> Log out </span>
                     </x-dropdown-link>
                 </form>
             </x-slot>

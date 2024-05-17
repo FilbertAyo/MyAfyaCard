@@ -21,7 +21,20 @@ class ProgressController extends Controller
    $metrics = Metric::with('patients')->get();
    $patient = Patient::with('metrics')->get();
 
-   return view('dashboard',compact('patient','metrics'));
+
+   $pat = Patient::all();
+   $goodPatient = Patient::where('mark','good')->count();
+   $poorPatient = Patient::where('mark','poor')->count();
+   $averagePatient = Patient::where('mark','satisfying')->count();
+   $totalPatient = count($pat);
+   
+   session()->put('totalPatient',$totalPatient);
+   session()->put('goodPatient',$goodPatient);
+   session()->put('poorPatient',$poorPatient);
+   session()->put('averagePatient',$averagePatient);
+
+
+   return view('dashboard',compact('patient','metrics','totalPatient','goodPatient','poorPatient','averagePatient'));
 
     }
 
@@ -38,7 +51,7 @@ class ProgressController extends Controller
      */
     public function store(Request $request)
     {
-      Metric::create([
+      $metric =  Metric::create([
           'cd'=> $request->cd,
           'weight'=>$request->weight,
           'viral_load'=> $request->viral_load, 
@@ -50,7 +63,24 @@ class ProgressController extends Controller
           'patient_id'=>$request->patient_id,
           'enrolment' =>$request->enrolment,
           'prognosis' => $request->prognosis,
+          'doctor' => $request->doctor,
+          'doctor_contact' => $request->doctor_contact,
         ]);
+
+        $patient = Patient::findOrFail($request->patient_id);
+        if ($metric->cd < 250) {
+            $patient->mark = 'poor';
+            $patient->save();
+        }
+    
+        elseif  ($metric->cd > 399){
+            $patient->mark = 'good';
+            $patient->save();
+        }else{
+            $patient->mark = 'satisfying';
+            $patient->save();
+        }
+      
 
         return redirect()->back()->with('success',"Metrics added successfully");
     }
@@ -96,18 +126,19 @@ class ProgressController extends Controller
                     ];
                     });
 
-                    foreach ($metrics as $prod) {
+                    foreach ($metrics as $metric) {
                         // Check if quantity is below 20
-                        if ($prod['cd']< 1000) {
+                        if ($metric['cd']< 250) {
                             // Update status to 'low'
-                            $prod->update(['prognosis'=>'poor']);
-                        } elseif($prod['cd']> 1400) {
+                            $metric->update(['prognosis'=>'dropping']);
+                        } elseif($metric['cd']> 399) {
                             // Update status to 'enough'
-                            $prod->update(['prognosis'=>'good']);
+                            $metric->update(['prognosis'=>'good']);
                         }else{
-                            $prod->update(['prognosis'=>'moderate']);
+                            $metric->update(['prognosis'=>'average']);
                         }
                     }
+                    
        
         return view('layout.progress',['cdData'=> $formData ,'data'=> $formattedData, 'ratio'=>$ratioData],compact('patient','metrics'));
 
@@ -135,5 +166,22 @@ class ProgressController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function low(){
+
+        $metrics = Metric::with('patients')->get();
+        $patient = Patient::with('metrics')->get();
+     
+
+        return view('layout.poor_progress',compact('patient','metrics'));
+    }
+    public function good(){
+
+        $metrics = Metric::with('patients')->get();
+        $patient = Patient::with('metrics')->get();
+     
+
+        return view('layout.good_progress',compact('patient','metrics'));
     }
 }

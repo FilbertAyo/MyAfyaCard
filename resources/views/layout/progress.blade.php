@@ -35,8 +35,7 @@
             <div class="card-body">
                 <h4 class="card-title">Patient progress</h4>
                 <p class="card-description">
-                    Metrics<code>table</code>
-                    
+                    Metrics<code>table</code>                  
                 </p>
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -52,6 +51,7 @@
                                 <th>Other medicine</th>
                                 <th>prognosis</th>
                                 <th>Next Visit</th>
+                                <th>Attended info</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,14 +68,41 @@
                                 <td>{{ $metric->dosage }}</td>
                                 <td>{{ $metric->enrolment }}</td>
                                 <td>{{ $metric->other_med }}</td>
-                                <td><i class="ti-arrow-down text-danger">{{ $metric->prognosis }}</td>
+                                <td>
+                                    
+                                    @if($metric->prognosis === 'dropping')
+                                    <i class="mdi mdi-arrow-down text-danger"> dropping
+                                @elseif($metric->prognosis === 'good')
+                                <i class="mdi mdi-arrow-up text-success"> good
+                                @else
+                                <i class="mdi mdi-swap-vertical text-warning"> average
+                                @endif
+
+                                </td>
+                                   
                                 <td><label class="badge badge-primary">{{ $metric->visit_date }}</label></td>
+                                <td>
+                                 
+                                      <div class="btn-group dropup">
+                                      
+                                        <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split text-white" id="dropupMenuSplitButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="ti-user"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropupMenuSplitButton1">
+                                      
+                                          <a class="dropdown-item" href="#">Doctor:{{ $metric->doctor }} </a>
+                                          <div class="dropdown-divider"></div>
+                                          <a class="dropdown-item" href="#">Contact No: {{ $metric->doctor_contact }}</a>
+                                        </div>
+                                      </div>
+                                </td>
                             </tr>
+                        
 
                             @endforeach
                             @else
                             <tr>
-                                <td class="text-center" colspan="8">No Patient record found</td>
+                                <td class="text-center" colspan="11">No Patient record found</td>
                             </tr>
                         @endif
                         </tbody>
@@ -143,6 +170,7 @@
                 {!!  csrf_field() !!}
 
                 <input type="hidden" name="patient_id" value="{{ $patient->id }}">
+
                 <p class="card-description">
                     Patient info per visit
                 </p>
@@ -151,7 +179,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">CD4</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="cd" placeholder="cells per cubic millimeter"/>
+                                <input type="text" class="form-control" name="cd" placeholder="cells per cubic millimeter" required/>
                             </div>
                         </div>
                     </div>
@@ -159,7 +187,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Viral Load</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="viral_load" placeholder="copies per millimeter"/>
+                                <input type="text" class="form-control" name="viral_load" placeholder="copies per millimeter" required/>
                             </div>
                         </div>
                     </div>
@@ -169,7 +197,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">CD4/CD8 ratio</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="ratio" placeholder="" /> 
+                                <input type="text" class="form-control" name="ratio" placeholder="" required/> 
                             </div>
                         </div>
                     </div>
@@ -177,13 +205,32 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Weight</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="weight" placeholder="kg"/>
+                                <input type="text" class="form-control" name="weight" placeholder="kg" required/>
                             </div>
                         </div>
                     </div>
                 </div>
             <div class="row">
                     <div class="col-md-6">
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">status enrolment</label>
+                            
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="enrolment">
+          <option>Pregnant</option>
+          <option>sick with no TB illness</option>
+          <option>TB treatment</option>
+          <option>Chronic illness</option>
+          <option>None</option>
+        
+                                 </select>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Medicine</label>
                             <div class="col-sm-9">
@@ -195,33 +242,22 @@
                              </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Dosage</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="dosage"/>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 
                 <div class="row">
+
+
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">status enrolment</label>
-                            
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="enrolment">
-          <option>Pregnant</option>
-          <option>sick with no TB illness</option>
-          <option>TB treatment</option>
-        
-                                 </select>
-                              
+                            <label class="col-sm-3 col-form-label">Dosage</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="dosage" required/>
                             </div>
                         </div>
                     </div>
+                
                    
                        {{-- prognosis  --}}
                                 <input type="hidden" class="form-control" name="prognosis" value="mark" />
@@ -234,7 +270,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Other medicine taken *if any</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="other_med" placeholder="eg Chloroquine." /> 
+                                <input type="text" class="form-control" name="other_med" placeholder="eg Chloroquine." required/> 
                             </div>
                         </div>
                     </div>
@@ -242,7 +278,30 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Next visit</label>
                             <div class="col-sm-9">
-                                <input type="date" class="form-control" name="visit_date" />
+                                <input type="date" class="form-control" name="visit_date" required/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="card-description">
+                   Doctor / health professional information
+                </p>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Attended by (name)</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="doctor" placeholder="eg DR. somebody." required/> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">contact</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="doctor_contact" required/>
                             </div>
                         </div>
                     </div>
@@ -294,6 +353,124 @@
   <script src="{{ asset('js/Chart.roundedBarCharts.js') }}"></script>
   <!-- End custom js for this page-->
 
+
+  <script>
+      'use strict';
+    $(function() {
+        var body = $('body');
+        var contentWrapper = $('.content-wrapper');
+        var scroller = $('.container-scroller');
+        var footer = $('.footer');
+        var sidebar = $('.sidebar');
+
+        function addActiveClass(element) {
+            if (current === "") {
+                //for root url
+                if (element.attr('href').indexOf("index.html") !== -1) {
+                    element.parents('.nav-item').last().addClass('active');
+                    if (element.parents('.sub-menu').length) {
+                        element.closest('.collapse').addClass('show');
+                        element.addClass('active');
+                    }
+                }
+            } else {
+                //for other url
+                if (element.attr('href').indexOf(current) !== -1) {
+                    element.parents('.nav-item').last().addClass('active');
+                    if (element.parents('.sub-menu').length) {
+                        element.closest('.collapse').addClass('show');
+                        element.addClass('active');
+                    }
+                    if (element.parents('.submenu-item').length) {
+                        element.addClass('active');
+                    }
+                }
+            }
+        }
+
+        var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
+        $('.nav li a', sidebar).each(function() {
+            var $this = $(this);
+            addActiveClass($this);
+        })
+
+        $('.horizontal-menu .nav li a').each(function() {
+            var $this = $(this);
+            addActiveClass($this);
+        })
+
+        //Close other submenu in sidebar on opening any
+
+        sidebar.on('show.bs.collapse', '.collapse', function() {
+            sidebar.find('.collapse.show').collapse('hide');
+        });
+
+
+        //Change sidebar and content-wrapper height
+        applyStyles();
+
+        function applyStyles() {
+            //Applying perfect scrollbar
+            if (!body.hasClass("rtl")) {
+                if ($('.settings-panel .tab-content .tab-pane.scroll-wrapper').length) {
+                    const settingsPanelScroll = new PerfectScrollbar('.settings-panel .tab-content .tab-pane.scroll-wrapper');
+                }
+                if ($('.chats').length) {
+                    const chatsScroll = new PerfectScrollbar('.chats');
+                }
+                if (body.hasClass("sidebar-fixed")) {
+                    if ($('#sidebar').length) {
+                        var fixedSidebarScroll = new PerfectScrollbar('#sidebar .nav');
+                    }
+                }
+            }
+        }
+
+        $('[data-bs-toggle="minimize"]').on("click", function() {
+            if ((body.hasClass('sidebar-toggle-display')) || (body.hasClass('sidebar-absolute'))) {
+                body.toggleClass('sidebar-hidden');
+            } else {
+                body.toggleClass('sidebar-icon-only');
+            }
+        });
+
+        //checkbox and radios
+        $(".form-check label,.form-radio label").append('<i class="input-helper"></i>');
+
+        //Horizontal menu in mobile
+        $('[data-toggle="horizontal-menu-toggle"]').on("click", function() {
+            $(".horizontal-menu .bottom-navbar").toggleClass("header-toggled");
+        });
+        // Horizontal menu navigation in mobile menu on click
+        var navItemClicked = $('.horizontal-menu .page-navigation >.nav-item');
+        navItemClicked.on("click", function(event) {
+            if (window.matchMedia('(max-width: 991px)').matches) {
+                if (!($(this).hasClass('show-submenu'))) {
+                    navItemClicked.removeClass('show-submenu');
+                }
+                $(this).toggleClass('show-submenu');
+            }
+        })
+
+        $(window).scroll(function() {
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                var header = $('.horizontal-menu');
+                if ($(window).scrollTop() >= 70) {
+                    $(header).addClass('fixed-on-scroll');
+                } else {
+                    $(header).removeClass('fixed-on-scroll');
+                }
+            }
+        });
+    });
+
+    // focus input when clicking on search icon
+    $('#navbar-search-icon').click(function() {
+        $("#navbar-search-input").focus();
+    });
+
+  </script>
+
   <script>
 
     var weightData = JSON.parse('{!! json_encode($data) !!}')
@@ -323,28 +500,7 @@
         borderWidth: 1,
         fill: false
     },
-    // {
-    //     label: 'weight',
-    //     data: [23,42,2,5],
-    //     backgroundColor: [
-    //         'rgba(255, 99, 132, 0.2)',
-    //         'rgba(54, 162, 235, 0.2)',
-    //         'rgba(255, 206, 86, 0.2)',
-    //         'rgba(75, 192, 192, 0.2)',
-    //         'rgba(153, 102, 255, 0.2)',
-    //         'rgba(255, 159, 64, 0.2)'
-    //     ],
-    //     borderColor: [
-    //         'rgba(255,99,132,1)',
-    //         'rgba(54, 162, 235, 1)',
-    //         'rgba(255, 206, 86, 1)',
-    //         'rgba(75, 192, 192, 1)',
-    //         'rgba(153, 102, 255, 1)',
-    //         'rgba(255, 159, 64, 1)'
-    //     ],
-    //     borderWidth: 1,
-    //     fill: false  
-    // }
+ 
 ]
 };
 
@@ -475,9 +631,6 @@ var areaOptions = {
     }
 }
 
-
-
-
 if ($("#areaChart").length) {
     var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
     var areaChart = new Chart(areaChartCanvas, {
@@ -488,5 +641,17 @@ if ($("#areaChart").length) {
 }
   </script>
 
+
+<script src="../../vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="../../vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="../../js/off-canvas.js"></script>
+<script src="../../js/hoverable-collapse.js"></script>
+<script src="../../js/template.js"></script>
+<script src="../../js/settings.js"></script>
+<script src="../../js/todolist.js"></script>
 
 </x-app-layout>
