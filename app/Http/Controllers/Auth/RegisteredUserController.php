@@ -35,6 +35,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -43,12 +45,22 @@ class RegisteredUserController extends Controller
             'location' => $request->location,
         ]);
         
+
+        if($user->userType == 0){
+
+            return redirect()->back()->with('success','Hospital registered successfully');
+        }elseif($user->userType == 1){
+
+         event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect(route('dashboard',absolute:false));
+
+        }
         
-        // event(new Registered($user));
+      
 
-        // Auth::login($user);
-
-        return redirect()->back()->with('success','Hospital registered successfully');
     }
 
     
