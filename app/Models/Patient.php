@@ -4,17 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Metric;
 use App\Models\User;
+use Illuminate\Auth\Middleware\Authenticate;
+// use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
-class Patient extends Model
+class Patient extends Authenticatable
 {
     use HasFactory;
 
     use SoftDeletes;
 
+    use Notifiable;
+
     protected $dates = ['deleted_at'];
+    protected $table = 'patients';
+    protected $primary_key = 'id';
 
     protected $fillable=[
         'id',
@@ -46,6 +54,12 @@ class Patient extends Model
         'stage',
        
     ];
+
+    protected $hidden = [
+        'card_no',
+        'remember_token',
+    ];
+
 
      // Optionally, you can set default attributes for the model
      protected $attributes = [

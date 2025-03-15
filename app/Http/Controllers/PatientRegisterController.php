@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use App\Models\User;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,12 +16,29 @@ class PatientRegisterController extends Controller
      */
     public function index()
     {
+        $microtime = microtime(true);
 
+        $dateTime = new DateTime();
+        $dateTime ->setTimestamp($microtime);
+
+        $year = $dateTime->format('Y');
+        $month = $dateTime->format('m');
+        $day = $dateTime->format('d');
+        $hour = $dateTime->format('H');
+        $minute = $dateTime->format('i');
+        $second = $dateTime->format('s');
+        $millisecond = (int)($microtime*1000)%1000;
+
+        $uniqueNo = $year.'-'.$month.'-'.$day.$hour.$minute.$second.str_pad($millisecond,3,'0',STR_PAD_LEFT);
+
+        $uniqueNumber = substr($uniqueNo,0,16);
+
+        $onlyTrashed = Patient::onlyTrashed()->count();
         $patient_register = Patient::withTrashed()->get();
         // $patient_register = Patient::all();
         $user = DB::table('users')->get();
 
-        return view('layout.patient_register',compact('patient_register','user'));
+        return view('layout.patient_register',compact('patient_register','user','onlyTrashed','uniqueNumber'));
     }
 
     public function inactive()
@@ -40,6 +58,7 @@ class PatientRegisterController extends Controller
        
         return view('layout.patient_active',compact('patient_register','user'));
     }
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -76,7 +95,7 @@ class PatientRegisterController extends Controller
             'local_leader' => 'required|regex:/^[a-zA-Z\s]+$/|max:40',
             'reason' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
             'allergy' => 'required|regex:/^[a-zA-Z\s]+$/|max:140',
-            'card_no' => 'required|digits:10',
+            'card_no' => 'required',
             'birth_date' => 'required|date|before:today', 
         ]);
 
@@ -174,6 +193,6 @@ class PatientRegisterController extends Controller
         $patient->delete();
     
         return redirect()->route('patient_register.index')->with('success',"Patient deactivated successfully");
-        // return response()->json(['message' => 'Patient moved to history.']);
+      
     }
 }

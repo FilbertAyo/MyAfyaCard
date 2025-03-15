@@ -141,11 +141,11 @@
 
 
                 <div class="row mt-3">
-                  <div class="col-lg-6 grid-margin stretch-card">
+                  <div class="col-lg-6 grid-margin stretch-card mt-5">
 
 
                    <div class="mt-5">
-                    <h1>Adult HIV confidential card </h1>
+                    <h1 class="mt-5">Adult HIV confidential card </h1>
                     <ul  class="list-ticked">
                         <li>Full heath visibility and transparency</li>
                         <li>Efficiency and private record recalls</li>
@@ -153,7 +153,7 @@
                        
                     </ul>
                    
-                    <div class="mt-4 text-gray-300 btn-s">
+                    <div class="mt-4 text-gray-300 btn-s ">
 
                       @if (Route::has('login'))
 
@@ -175,6 +175,13 @@
                       @endauth
 
               @endif
+
+              <a
+              href="{{ url('/patient/login') }}"
+                  class="btn btn-outline-danger ml-3"
+              >
+                  Patient credentials
+              </a>
             
                   </div>
                 </div>

@@ -29,22 +29,16 @@
             <button class="btn btn-secondary dropdown-toggle toggle-dark btn-lg mb-0 me-0 text-primary" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Overview </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                 <h6 class="dropdown-header text-primary">Patients data</h6>
-                <a class="dropdown-item" href="#">Total patients : 164 </a>
-                <a class="dropdown-item" href="#">Good progress: 85</a>
-                <a class="dropdown-item" href="#">Poor progress: 79</a>
-                <h6 class="dropdown-header text-primary">Percentage progress</h6>
-                <a class="dropdown-item" href="#">  <div>
-                    <div class="d-flex justify-content-between align-items-center mb-1 max-width-progress-wrap">
-                        <p class="text-success">79%</p>
-                        <p>85/162</p>
-                    </div>
-                    <div class="progress progress-md">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                <a class="dropdown-item" href="#">Total registered patients : {{ session('activePatient',0) + session('inactivePatient',0) }}  </a>
+                <a class="dropdown-item text-success" href="#">Active patients : {{ session('activePatient',0) }} </a>
+                <a class="dropdown-item text-danger" href="#">Inactive patients : {{ session('inactivePatient',0) }} </a>
+                <h6 class="dropdown-header text-primary">Progress data</h6>
+                <a class="dropdown-item text-success" href="#">Good progress: {{ session('goodPatient',0) }} </a>
+            
+                <a class="dropdown-item" href="#">Average progress: {{ session('averagePatient',0) }} </a>
+                <a class="dropdown-item text-danger" href="#">Poor progress: {{ session('poorPatient',0) }} </a>
+              
                 </div>
-            </a>
-                
-            </div>
         </ul>
         
       </div>

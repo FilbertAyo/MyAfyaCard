@@ -78,6 +78,7 @@
 
                             <tr>
                                 <td>
+                                  
                                     {{ $loop->iteration }}
                                 </td>
                                 <td>

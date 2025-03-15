@@ -25,7 +25,7 @@
         </ul>
         <div>
           <div class="btn-wrapper">
-            <btton class="btn btn-primary text-white" type="button" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-account-plus"></i> Register</btton>
+            <button class="btn btn-primary text-white" type="button" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-account-plus"></i> Register</button>
           </div>
         </div>
       </div>
@@ -118,7 +118,7 @@
                                 
                                     @if(!$pat_reg->trashed())
                         
-                                    <a href="{{ route('patient_register.show',$pat_reg->id) }}" class="btn btn-info mdi mdi-eye text-white"> active</a>
+                                    <a href="{{ route('patient_register.show',$pat_reg->id) }}" class="btn btn-info mdi mdi-eye text-white"> Active</a>
 
                                 @else
                                     <span class="btn btn-danger text-white">inactive</span>
@@ -205,7 +205,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Registration No.</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="card_no" value="{{ old('card_no') }}" required/>
+                                    <input type="text" class="form-control" name="card_no" value="{{ $uniqueNumber }}" readonly/>
                                     @if ($errors->has('card_no'))
                                     <span class="text-danger text-sm" style="font-size: 10px;">reg number should be of 10 digits</span>
                                 @endif

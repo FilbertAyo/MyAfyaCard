@@ -16,8 +16,9 @@ class ProgressController extends Controller
      */
     public function index()
     {
-//    $patient = DB::table('patient_registers')->get();
 
+   $inactivePatient = Patient::onlyTrashed()->count();
+   $activePatient = Patient::withoutTrashed()->count();
    $metrics = Metric::with('patients')->get();
    $patient = Patient::with('metrics')->get();
 
@@ -31,10 +32,12 @@ class ProgressController extends Controller
    session()->put('totalPatient',$totalPatient);
    session()->put('goodPatient',$goodPatient);
    session()->put('poorPatient',$poorPatient);
+   session()->put('inactivePatient',$inactivePatient);
+   session()->put('activePatient',$activePatient);
    session()->put('averagePatient',$averagePatient);
 
 
-   return view('dashboard',compact('patient','metrics','totalPatient','goodPatient','poorPatient','averagePatient'));
+   return view('dashboard',compact('patient','metrics','totalPatient','goodPatient','poorPatient','averagePatient','inactivePatient','activePatient'));
 
     }
 

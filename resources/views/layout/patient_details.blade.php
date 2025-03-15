@@ -112,6 +112,10 @@
                                         <i class="mdi mdi-map-marker text-muted me-1"></i>
                                         <p class="mb-0 text-small text-muted">{{ $patient_register->street }}, {{ $patient_register->district }}, {{ $patient_register->city }}</p>
                                     </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="mdi mdi-clipboard-account text-muted me-1"></i>
+                                        <p class="mb-0 text-small text-muted"> {{ $patient_register->phone_number }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -217,14 +221,15 @@
                                     </div>
                                 </div>
                             </li>
-                            @foreach ($patient as $patient)
+                            {{-- @foreach ($patient as $patient)
                             <li>
                                 <div class="d-flex justify-content-between mb-4">
                                     <div><span class="text-light-green">Registered by <strong class="text-primary">{{ $patient->user->name }}</strong></span> </div>
-                                    {{-- <p class="btn btn-inverse-info">{{ $currentTime->toDateTimeString() }}</p> --}}
+                                    <p class="btn btn-inverse-info">{{ $currentTime->toDateTimeString() }}</p>
                                 </div>
                             </li>
-                                        @endforeach
+                             @endforeach --}}
+                             
                             <li>
                                 <div class="d-flex justify-content-between">
                                     <div>The profile created on </div>                 

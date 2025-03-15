@@ -48,6 +48,7 @@
                         <thead>
                             <tr>
                                 <th>
+                                  
                                     No.
                                 </th>
                                 <th>
@@ -122,6 +123,7 @@
                             @else
                             <tr>
                                 <td class="text-center" colspan="7">No inactive patient found</td>
+                                
                             </tr>
                         @endif
 

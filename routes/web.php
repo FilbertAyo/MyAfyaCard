@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\PatientAuthController;
 use App\Http\Controllers\PatientRegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgressController;
@@ -36,3 +37,10 @@ Route::get('patient_active',[PatientRegisterController::class,'active']);
 // Route::get('/test',[TestingController::class, 'index']);
 
 Route::resource('reg',RegisteredUserController::class);
+
+
+//patient login to access credentials
+
+Route::get('/patient/login', [PatientAuthController::class, 'index'])->name('patient.login.form');
+Route::post('/patient/login', [PatientAuthController::class, 'pat_login'])->name('patient.login');
+// Route::get('/patient/dashboard', [PatientAuthController::class, 'showPatientDashboard'])->middleware('auth:patients')->name('patient.dashboard');

@@ -181,7 +181,7 @@
                         </ul>
                         <div>
                           <div class="btn-wrapper">
-                            <btton class="btn btn-primary text-white" type="button" data-toggle="modal" data-target="#exampleModal"> Register hospital</btton>
+                            <button class="btn btn-primary text-white" type="button" data-toggle="modal" data-target="#exampleModal"> Register hospital</button>
                           </div>
                         </div>
                       </div>
@@ -292,7 +292,7 @@
               <div class="modal-content">
                 <div class="card">
                 <div class="modal-header">
-                  <h5 class="modal-title text-danger" id="exampleModalLabel">Sign in</h5>
+                  <h5 class="modal-title text-danger" id="exampleModalLabel">Register new hospital</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <div aria-hidden="true" class="icon icon-box-danger ">
                       <span class="mdi mdi-close-box text-danger"></span>
@@ -333,7 +333,7 @@
 </div>
 
     <!-- Password -->
-    <div class="mt-4">
+    <div class="mt-4" style="display: none;">
         <x-input-label for="password" :value="__('Password')" />
 
         <x-text-input id="password" class="block mt-1 w-full"
@@ -346,7 +346,7 @@
     </div>
 
     <!-- Confirm Password -->
-    <div class="mt-4">
+    <div class="mt-4" style="display: none;">
         <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
         <x-text-input id="password_confirmation" class="block mt-1 w-full"
@@ -358,10 +358,7 @@
     </div>
 
     <div class="flex items-center justify-end mt-4">
-        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-            {{ __('Already registered?') }}
-        </a>
-
+       
         <x-primary-button class="ms-4">
             {{ __('Register') }}
         </x-primary-button>
